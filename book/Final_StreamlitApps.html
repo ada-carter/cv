@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>34. Creating Streamlit Applications for YOLOv11 Models &#8212; Computer Vision for Marine Applications</title>
+    <title>25. Creating Streamlit Applications for YOLOv11 Models &#8212; Computer Vision for Marine Applications</title>
   
   
   
@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Bibliography" href="bibliography.html" />
-    <link rel="prev" title="33. Writing a Model Card" href="Final_ModelCard.html" />
+    <link rel="prev" title="24. Writing a Model Card" href="Final_ModelCard.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,22 +211,13 @@
 <li class="toctree-l1"><a class="reference internal" href="InstanceSegmentation_YOLO.html">19. Instance Segmentation with YOLO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LA11.html">22. Self-Supervised Learning for Image Classification with SimCLR in PyTorch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LA12.html">23. Action Recognition and Event Detection in Videos using I3D Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LA13.html">24. Anomaly Detection in Images and Videos using Autoencoders and TensorFlow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Final_DataPrep.html">25. Dataset Preparation and Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_TrainEval.html">26. Training and Evaluation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_DataViz.html">27. Data Visualization and Figure Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_ModelSelection.html">28. Model Selection and Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_Usecase.html">29. Usecase Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_TyingItAllTogether.html">30. Tying it all together</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">31. Finding Datasets for Computer Vision Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">32. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">33. Writing a Model Card</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">34. Creating Streamlit Applications for YOLOv11 Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">23. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">24. Writing a Model Card</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. Creating Streamlit Applications for YOLOv11 Models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
@@ -445,27 +436,27 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">34.1. Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment-setup">34.2. Development Environment Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-editor">34.2.1. Setting Up Your Editor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">34.2.2. Project Structure</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-requirements-txt">34.2.3. Creating Requirements.txt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">25.1. Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment-setup">25.2. Development Environment Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-editor">25.2.1. Setting Up Your Editor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">25.2.2. Project Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-requirements-txt">25.2.3. Creating Requirements.txt</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-inference-app">34.3. Basic Inference App</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-streamlit-features">34.4. Advanced Streamlit Features</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-the-sidebar">34.4.1. Customizing the Sidebar</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-multiple-input-types">34.4.2. Handling Multiple Input Types</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#progress-and-status-indicators">34.4.3. Progress and Status Indicators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-results-with-tabs">34.4.4. Displaying Results with Tabs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-inference-app">25.3. Basic Inference App</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-streamlit-features">25.4. Advanced Streamlit Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-the-sidebar">25.4.1. Customizing the Sidebar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-multiple-input-types">25.4.2. Handling Multiple Input Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#progress-and-status-indicators">25.4.3. Progress and Status Indicators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-results-with-tabs">25.4.4. Displaying Results with Tabs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-to-streamlit-cloud">34.5. Deploying to Streamlit Cloud</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-app">34.6. Running the App</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-features">34.7. Additional Features</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-management">34.7.1. File Management</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-state">34.7.2. Session State</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">34.7.3. Batch Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-to-streamlit-cloud">25.5. Deploying to Streamlit Cloud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-app">25.6. Running the App</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-features">25.7. Additional Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-management">25.7.1. File Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-state">25.7.2. Session State</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">25.7.3. Batch Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -480,18 +471,18 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="creating-streamlit-applications-for-yolov11-models">
-<h1><span class="section-number">34. </span>Creating Streamlit Applications for YOLOv11 Models<a class="headerlink" href="#creating-streamlit-applications-for-yolov11-models" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">25. </span>Creating Streamlit Applications for YOLOv11 Models<a class="headerlink" href="#creating-streamlit-applications-for-yolov11-models" title="Permalink to this heading">#</a></h1>
 <p>Streamlit is an open-source Python library that makes it easy to create interactive web applications. Below is an example of how to load YOLOv11 weights, run inference, and display results.</p>
 <section id="installation">
-<h2><span class="section-number">34.1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>streamlit<span class="w"> </span>ultralytics
 </pre></div>
 </div>
 </section>
 <section id="development-environment-setup">
-<h2><span class="section-number">34.2. </span>Development Environment Setup<a class="headerlink" href="#development-environment-setup" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.2. </span>Development Environment Setup<a class="headerlink" href="#development-environment-setup" title="Permalink to this heading">#</a></h2>
 <section id="setting-up-your-editor">
-<h3><span class="section-number">34.2.1. </span>Setting Up Your Editor<a class="headerlink" href="#setting-up-your-editor" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.2.1. </span>Setting Up Your Editor<a class="headerlink" href="#setting-up-your-editor" title="Permalink to this heading">#</a></h3>
 <p>For the best development experience with Streamlit, use a modern code editor:</p>
 <ol class="arabic simple">
 <li><p><strong>VSCode Setup:</strong></p>
@@ -513,7 +504,7 @@ document.write(`
 </ol>
 </section>
 <section id="project-structure">
-<h3><span class="section-number">34.2.2. </span>Project Structure<a class="headerlink" href="#project-structure" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.2.2. </span>Project Structure<a class="headerlink" href="#project-structure" title="Permalink to this heading">#</a></h3>
 <p>A basic Streamlit project structure might look like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_yolo_app/
 ├── app.py              # Main Streamlit application
@@ -526,7 +517,7 @@ document.write(`
 </div>
 </section>
 <section id="creating-requirements-txt">
-<h3><span class="section-number">34.2.3. </span>Creating Requirements.txt<a class="headerlink" href="#creating-requirements-txt" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.2.3. </span>Creating Requirements.txt<a class="headerlink" href="#creating-requirements-txt" title="Permalink to this heading">#</a></h3>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file containing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">streamlit</span><span class="o">&gt;=</span><span class="mf">1.22.0</span>
 <span class="n">ultralytics</span><span class="o">&gt;=</span><span class="mf">8.0.0</span>
@@ -537,7 +528,7 @@ document.write(`
 </section>
 </section>
 <section id="basic-inference-app">
-<h2><span class="section-number">34.3. </span>Basic Inference App<a class="headerlink" href="#basic-inference-app" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.3. </span>Basic Inference App<a class="headerlink" href="#basic-inference-app" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ultralytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YOLO</span>
@@ -579,9 +570,9 @@ document.write(`
 </div>
 </section>
 <section id="advanced-streamlit-features">
-<h2><span class="section-number">34.4. </span>Advanced Streamlit Features<a class="headerlink" href="#advanced-streamlit-features" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.4. </span>Advanced Streamlit Features<a class="headerlink" href="#advanced-streamlit-features" title="Permalink to this heading">#</a></h2>
 <section id="customizing-the-sidebar">
-<h3><span class="section-number">34.4.1. </span>Customizing the Sidebar<a class="headerlink" href="#customizing-the-sidebar" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.4.1. </span>Customizing the Sidebar<a class="headerlink" href="#customizing-the-sidebar" title="Permalink to this heading">#</a></h3>
 <p>The sidebar provides a convenient place for controls and settings:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sidebar_controls</span><span class="p">():</span>
     <span class="n">st</span><span class="o">.</span><span class="n">sidebar</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Model Settings&quot;</span><span class="p">)</span>
@@ -618,7 +609,7 @@ document.write(`
 </div>
 </section>
 <section id="handling-multiple-input-types">
-<h3><span class="section-number">34.4.2. </span>Handling Multiple Input Types<a class="headerlink" href="#handling-multiple-input-types" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.4.2. </span>Handling Multiple Input Types<a class="headerlink" href="#handling-multiple-input-types" title="Permalink to this heading">#</a></h3>
 <p>Allow users to input data in multiple ways:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_input_data</span><span class="p">():</span>
     <span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;Input Options&quot;</span><span class="p">)</span>
@@ -657,7 +648,7 @@ document.write(`
 </div>
 </section>
 <section id="progress-and-status-indicators">
-<h3><span class="section-number">34.4.3. </span>Progress and Status Indicators<a class="headerlink" href="#progress-and-status-indicators" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.4.3. </span>Progress and Status Indicators<a class="headerlink" href="#progress-and-status-indicators" title="Permalink to this heading">#</a></h3>
 <p>Show progress during long operations:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process_images</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
     <span class="c1"># Create a progress bar</span>
@@ -681,7 +672,7 @@ document.write(`
 </div>
 </section>
 <section id="displaying-results-with-tabs">
-<h3><span class="section-number">34.4.4. </span>Displaying Results with Tabs<a class="headerlink" href="#displaying-results-with-tabs" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.4.4. </span>Displaying Results with Tabs<a class="headerlink" href="#displaying-results-with-tabs" title="Permalink to this heading">#</a></h3>
 <p>Organize results using tabs:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">display_results</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
     <span class="n">tab1</span><span class="p">,</span> <span class="n">tab2</span><span class="p">,</span> <span class="n">tab3</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">tabs</span><span class="p">([</span><span class="s2">&quot;Visualizations&quot;</span><span class="p">,</span> <span class="s2">&quot;Statistics&quot;</span><span class="p">,</span> <span class="s2">&quot;Raw Data&quot;</span><span class="p">])</span>
@@ -718,7 +709,7 @@ document.write(`
 </section>
 </section>
 <section id="deploying-to-streamlit-cloud">
-<h2><span class="section-number">34.5. </span>Deploying to Streamlit Cloud<a class="headerlink" href="#deploying-to-streamlit-cloud" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.5. </span>Deploying to Streamlit Cloud<a class="headerlink" href="#deploying-to-streamlit-cloud" title="Permalink to this heading">#</a></h2>
 <p>To deploy your app to <a class="reference external" href="https://streamlit.io/cloud">Streamlit Cloud</a>:</p>
 <ol class="arabic">
 <li><p><strong>Push your code to GitHub:</strong></p>
@@ -760,7 +751,7 @@ git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span
 </ol>
 </section>
 <section id="running-the-app">
-<h2><span class="section-number">34.6. </span>Running the App<a class="headerlink" href="#running-the-app" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.6. </span>Running the App<a class="headerlink" href="#running-the-app" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run locally</span>
 streamlit<span class="w"> </span>run<span class="w"> </span>app.py
 
@@ -770,9 +761,9 @@ streamlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w
 </div>
 </section>
 <section id="additional-features">
-<h2><span class="section-number">34.7. </span>Additional Features<a class="headerlink" href="#additional-features" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">25.7. </span>Additional Features<a class="headerlink" href="#additional-features" title="Permalink to this heading">#</a></h2>
 <section id="file-management">
-<h3><span class="section-number">34.7.1. </span>File Management<a class="headerlink" href="#file-management" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.7.1. </span>File Management<a class="headerlink" href="#file-management" title="Permalink to this heading">#</a></h3>
 <p>Managing user-uploaded files and outputs:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
@@ -795,7 +786,7 @@ streamlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w
 </div>
 </section>
 <section id="session-state">
-<h3><span class="section-number">34.7.2. </span>Session State<a class="headerlink" href="#session-state" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.7.2. </span>Session State<a class="headerlink" href="#session-state" title="Permalink to this heading">#</a></h3>
 <p>Persist data between reruns of your app:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize session state variables</span>
 <span class="k">if</span> <span class="s2">&quot;detection_history&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">session_state</span><span class="p">:</span>
@@ -821,7 +812,7 @@ streamlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w
 </div>
 </section>
 <section id="batch-processing">
-<h3><span class="section-number">34.7.3. </span>Batch Processing<a class="headerlink" href="#batch-processing" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">25.7.3. </span>Batch Processing<a class="headerlink" href="#batch-processing" title="Permalink to this heading">#</a></h3>
 <p>Process multiple images at once:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">batch_processing</span><span class="p">():</span>
     <span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;Batch Processing&quot;</span><span class="p">)</span>
@@ -886,7 +877,7 @@ streamlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">33. </span>Writing a Model Card</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Writing a Model Card</p>
       </div>
     </a>
     <a class="right-next"
@@ -914,27 +905,27 @@ streamlit<span class="w"> </span>run<span class="w"> </span>app.py<span class="w
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">34.1. Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment-setup">34.2. Development Environment Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-editor">34.2.1. Setting Up Your Editor</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">34.2.2. Project Structure</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-requirements-txt">34.2.3. Creating Requirements.txt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">25.1. Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment-setup">25.2. Development Environment Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-editor">25.2.1. Setting Up Your Editor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">25.2.2. Project Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-requirements-txt">25.2.3. Creating Requirements.txt</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-inference-app">34.3. Basic Inference App</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-streamlit-features">34.4. Advanced Streamlit Features</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-the-sidebar">34.4.1. Customizing the Sidebar</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-multiple-input-types">34.4.2. Handling Multiple Input Types</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#progress-and-status-indicators">34.4.3. Progress and Status Indicators</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-results-with-tabs">34.4.4. Displaying Results with Tabs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-inference-app">25.3. Basic Inference App</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-streamlit-features">25.4. Advanced Streamlit Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-the-sidebar">25.4.1. Customizing the Sidebar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-multiple-input-types">25.4.2. Handling Multiple Input Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#progress-and-status-indicators">25.4.3. Progress and Status Indicators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-results-with-tabs">25.4.4. Displaying Results with Tabs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-to-streamlit-cloud">34.5. Deploying to Streamlit Cloud</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-app">34.6. Running the App</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-features">34.7. Additional Features</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-management">34.7.1. File Management</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-state">34.7.2. Session State</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">34.7.3. Batch Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-to-streamlit-cloud">25.5. Deploying to Streamlit Cloud</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-app">25.6. Running the App</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-features">25.7. Additional Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-management">25.7.1. File Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#session-state">25.7.2. Session State</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">25.7.3. Batch Processing</a></li>
 </ul>
 </li>
 </ul>
