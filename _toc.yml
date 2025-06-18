@@ -5,11 +5,11 @@ parts:
     numbered: false
     chapters:
       - file: book/Landing.md
-      - file: book/Tools.md 
+      - file: book/Tools.md
       - file: book/License_Page.md
       - file: book/Acknowledgements.md
       - file: book/StudentProjects.md
-   
+      - file: book/imageData.md
 
   - caption: "Chapter 1 - Introduction to Marine Imaging"
     numbered: true
@@ -21,35 +21,47 @@ parts:
       - file: book/Transfer_Learning_Marine.md
       - file: book/Model_Interpretability_Marine.md
 
-
   - caption: "Chapter 2 - Introduction to Computer Vision"
     numbered: true
-    chapters: 
+    chapters:
       - file: book/Image_Annotation_CV.md
+      - file: book/Image_Annotation_Man.md
+      - file: book/ImShow.ipynb
       - file: book/Augmentation_Manual.ipynb
       - file: book/Augmentation_Albumentation.ipynb
       - file: book/Introduction_Metrics.ipynb
 
   - caption: "Chapter 3 - Computer Vision Development"
     numbered: true
-    chapters:  
+    chapters:
       - file: book/Classification_Keras.ipynb
       - file: book/Introduction_YOLO.ipynb
       - file: book/TrainandDeployObj_YOLO.ipynb
       - file: book/Classification_YOLO.ipynb
       - file: book/FathomnetLocalizing_YOLO.ipynb
+      - file: book/Keypoint_YOLO.ipynb
       - file: book/InstanceSegmentation_YOLO.ipynb
       - file: book/ClusterSegmentation_Kmeans.ipynb
       - file: book/SRGAN_Tensorflow.ipynb
-      - file: book/Vision_Transformers_Marine.ipynb
+      - file: book/LA11.ipynb
+      - file: book/LA12.ipynb
+      - file: book/LA13.ipynb
 
   - caption: "Chapter 4 - Synthesis Project"
     numbered: true
     chapters:
+      - file: book/Final_Overview.md
+      - file: book/Final_DataPrep.ipynb
+      - file: book/Final_TrainEval.ipynb
+      - file: book/Final_DataViz.ipynb
+      - file: book/Final_ModelSelection.ipynb
+      - file: book/Final_Usecase.ipynb
+      - file: book/Final_TyingItAllTogether.ipynb
+      - file: book/Final_DatasetDiscovery.md
+      - file: book/Final_DatasetSelection.md
       - file: book/Final_HFOrganization.md
       - file: book/Final_ModelCard.md
       - file: book/Final_StreamlitApps.md
-      - file: book/Final_DatasetSelection.md
 
   - caption: "Appendices"
     numbered: false
