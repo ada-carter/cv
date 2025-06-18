@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>16. Instance Segmentation with YOLO &#8212; Computer Vision for Marine Applications</title>
+    <title>19. Instance Segmentation with YOLO &#8212; Computer Vision for Marine Applications</title>
   
   
   
@@ -64,8 +64,8 @@
     <link rel="shortcut icon" href="../_static/fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="17. K-means Segmentation" href="ClusterSegmentation_Kmeans.html" />
-    <link rel="prev" title="15. Localizing FathomNet to a New Dataset Using YOLOv11" href="FathomnetLocalizing_YOLO.html" />
+    <link rel="next" title="20. K-means Segmentation" href="ClusterSegmentation_Kmeans.html" />
+    <link rel="prev" title="18. Keypoint Detection With YOLO" href="Keypoint_YOLO.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -194,27 +194,39 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Introduction to Computer Vision</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Image_Annotation_CV.html">7. Image Annotation for Computer Vision</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">8. Image Manipulation in Python with PIL and OpenCV</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">9. Creating and Augmenting Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">10. Understanding CV Metrics and Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_Man.html">8. Manual Image Annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ImShow.html">9. Exploring Image Data With ImShow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">10. Image Manipulation in Python with PIL and OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">11. Creating and Augmenting Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">12. Understanding CV Metrics and Graphs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Computer Vision Development</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">11. Image Classification with Keras</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">12. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="TrainandDeployObj_YOLO.html">13. Training and Deploying Object Detection with YOLO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">14. Ice Seal Classification using YOLOv11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="FathomnetLocalizing_YOLO.html">15. Localizing FathomNet to a New Dataset Using YOLOv11</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Instance Segmentation with YOLO</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">17. K-means Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">18. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">13. Image Classification with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">14. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TrainandDeployObj_YOLO.html">15. Training and Deploying Object Detection with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">16. Ice Seal Classification using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FathomnetLocalizing_YOLO.html">17. Localizing FathomNet to a New Dataset Using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keypoint_YOLO.html">18. Keypoint Detection With YOLO</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Instance Segmentation with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LA11.html">22. Self-Supervised Learning for Image Classification with SimCLR in PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LA12.html">23. Action Recognition and Event Detection in Videos using I3D Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LA13.html">24. Anomaly Detection in Images and Videos using Autoencoders and TensorFlow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">19. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">20. Writing a Model Card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">21. Creating Streamlit Applications for YOLOv11 Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_DataPrep.html">25. Dataset Preparation and Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_TrainEval.html">26. Training and Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_DataViz.html">27. Data Visualization and Figure Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelSelection.html">28. Model Selection and Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_Usecase.html">29. Usecase Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_TyingItAllTogether.html">30. Tying it all together</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">31. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">32. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">33. Writing a Model Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">34. Creating Streamlit Applications for YOLOv11 Models</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
@@ -482,12 +494,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">16.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">16.2. Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">16.3. Background</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-the-dataset">16.4. Downloading the Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">16.5. Preparing the Environment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tensorboard-before-training">16.6. Initializing TensorBoard Before Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">19.2. Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">19.3. Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-the-dataset">19.4. Downloading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">19.5. Preparing the Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tensorboard-before-training">19.6. Initializing TensorBoard Before Training</a></li>
 </ul>
             </nav>
         </div>
@@ -500,13 +512,13 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="instance-segmentation-with-yolo">
-<span id="lesson-13"></span><h1><span class="section-number">16. </span>Instance Segmentation with YOLO<a class="headerlink" href="#instance-segmentation-with-yolo" title="Permalink to this heading">#</a></h1>
+<span id="lesson-13"></span><h1><span class="section-number">19. </span>Instance Segmentation with YOLO<a class="headerlink" href="#instance-segmentation-with-yolo" title="Permalink to this heading">#</a></h1>
 <section id="overview">
-<h2><span class="section-number">16.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.1. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
 <p>In this lesson, we will train an Instance Segmentation model using YOLOv11. You’ll be able to choose specific augmentations, batch size, resolution, and other parameters based on your system’s capabilities and runtime. The dataset is already provided in YOLO format and will be used to train and evaluate the model.</p>
 </section>
 <section id="learning-objectives">
-<h2><span class="section-number">16.2. </span>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.2. </span>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
 <p>By the end of this section, you will:</p>
 <ul class="simple">
 <li><p>Understand the extended YOLO format and how to train a custom <strong>instance segmentation</strong> model using YOLOv11.</p></li>
@@ -515,17 +527,17 @@ document.write(`
 </ul>
 </section>
 <section id="background">
-<h2><span class="section-number">16.3. </span>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.3. </span>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h2>
 <p>For instance segmentation in YOLO, each object is still labeled with a bounding box (as in standard object detection) <strong>and</strong> an associated segmentation mask. In practice, the YOLO label files include extra information to store the polygonal representation or encoded mask for each object. This is unique compared to many other frameworks because YOLO’s model architecture can simultaneously predict bounding boxes for localization <strong>and</strong> generate masks for precise instance segmentation.</p>
 </section>
 <section id="downloading-the-dataset">
-<h2><span class="section-number">16.4. </span>Downloading the Dataset<a class="headerlink" href="#downloading-the-dataset" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.4. </span>Downloading the Dataset<a class="headerlink" href="#downloading-the-dataset" title="Permalink to this heading">#</a></h2>
 <p>The dataset for this lesson is already formatted in the <strong>YOLO instance segmentation</strong> format. You can load it directly for training and evaluation. Ensure you have the dataset uploaded before proceeding.</p>
 <p>Access the dataset at the following link:</p>
 <p><a class="reference external" href="https://universe.roboflow.com/lini-foundation/lini-coral-forms-1.0/dataset/1">https://universe.roboflow.com/lini-foundation/lini-coral-forms-1.0/dataset/1</a></p>
 </section>
 <section id="preparing-the-environment">
-<h2><span class="section-number">16.5. </span>Preparing the Environment<a class="headerlink" href="#preparing-the-environment" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.5. </span>Preparing the Environment<a class="headerlink" href="#preparing-the-environment" title="Permalink to this heading">#</a></h2>
 <p>Let’s first install the required libraries and set up the environment to train our <strong>YOLOv11 instance segmentation</strong> model. <strong>Crucially</strong>, make sure that you are in a GPU runtime by running the cell below. It should output the GPU currently connected to.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -571,7 +583,7 @@ document.write(`
 </div>
 </section>
 <section id="initializing-tensorboard-before-training">
-<h2><span class="section-number">16.6. </span>Initializing TensorBoard Before Training<a class="headerlink" href="#initializing-tensorboard-before-training" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.6. </span>Initializing TensorBoard Before Training<a class="headerlink" href="#initializing-tensorboard-before-training" title="Permalink to this heading">#</a></h2>
 <p>TensorBoard is a powerful visualization tool that provides real-time insights into your model’s training process. By initializing TensorBoard before training, you can monitor key metrics such as loss, accuracy, and learning rates, allowing for timely adjustments and improved model performance. This proactive monitoring helps in identifying issues like overfitting or underfitting early in the training process. Be sure to click the refresh button in the top right of the Tensorboard often!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1123,12 +1135,12 @@ if (outputEl) {{
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="FathomnetLocalizing_YOLO.html"
+       href="Keypoint_YOLO.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Localizing FathomNet to a New Dataset Using YOLOv11</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Keypoint Detection With YOLO</p>
       </div>
     </a>
     <a class="right-next"
@@ -1136,7 +1148,7 @@ if (outputEl) {{
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>K-means Segmentation</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>K-means Segmentation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1156,12 +1168,12 @@ if (outputEl) {{
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">16.1. Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">16.2. Learning Objectives</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">16.3. Background</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-the-dataset">16.4. Downloading the Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">16.5. Preparing the Environment</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tensorboard-before-training">16.6. Initializing TensorBoard Before Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">19.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">19.2. Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">19.3. Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-the-dataset">19.4. Downloading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">19.5. Preparing the Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tensorboard-before-training">19.6. Initializing TensorBoard Before Training</a></li>
 </ul>
   </nav></div>
 
