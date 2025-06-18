@@ -43,21 +43,10 @@ parts:
       - file: book/InstanceSegmentation_YOLO.ipynb
       - file: book/ClusterSegmentation_Kmeans.ipynb
       - file: book/SRGAN_Tensorflow.ipynb
-      - file: book/LA11.ipynb
-      - file: book/LA12.ipynb
-      - file: book/LA13.ipynb
 
   - caption: "Chapter 4 - Synthesis Project"
     numbered: true
     chapters:
-      - file: book/Final_Overview.md
-      - file: book/Final_DataPrep.ipynb
-      - file: book/Final_TrainEval.ipynb
-      - file: book/Final_DataViz.ipynb
-      - file: book/Final_ModelSelection.ipynb
-      - file: book/Final_Usecase.ipynb
-      - file: book/Final_TyingItAllTogether.ipynb
-      - file: book/Final_DatasetDiscovery.md
       - file: book/Final_DatasetSelection.md
       - file: book/Final_HFOrganization.md
       - file: book/Final_ModelCard.md
