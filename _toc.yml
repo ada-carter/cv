@@ -57,7 +57,6 @@ parts:
       - file: book/Final_ModelSelection.ipynb
       - file: book/Final_Usecase.ipynb
       - file: book/Final_TyingItAllTogether.ipynb
-      - file: book/Final_DatasetDiscovery.md
       - file: book/Final_DatasetSelection.md
       - file: book/Final_HFOrganization.md
       - file: book/Final_ModelCard.md
