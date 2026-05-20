@@ -3,5 +3,4 @@ jupytext
 matplotlib
 numpy
 ghp-import
-plotly.express
-docutils==0.17.1
+plotly
