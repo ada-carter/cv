@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>24. Writing a Model Card &#8212; Computer Vision for Marine Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Final_ModelCard';</script>
+    <link rel="canonical" href="https://atticus-carter.github.io/cv/book/Final_ModelCard.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="25. Creating Streamlit Applications for YOLOv11 Models" href="Final_StreamlitApps.html" />
+    <link rel="prev" title="23. Joining the OceanCV Hugging Face Organization and Uploading Models" href="Final_HFOrganization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Computer Vision for Marine Applications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Computer Vision for Marine Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Landing.html">Welcome to Computer Vision Across the Marine Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tools.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License_Page.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Marine Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction_MarineImaging.html">1. Marine Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Imagery.html">2. Imagery Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanImageTypes.html">3. Ocean Image Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_AI.html">4. Artificial Intelligence in Marine Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transfer_Learning_Marine.html">5. Transfer Learning for Marine Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model_Interpretability_Marine.html">6. Model Interpretability for Marine Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Introduction to Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_CV.html">7. Image Annotation for Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_Man.html">8. Manual Image Annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ImShow.html">9. Exploring Image Data With ImShow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">10. Image Manipulation in Python with PIL and OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">11. Creating and Augmenting Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">12. Understanding CV Metrics and Graphs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Computer Vision Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">13. Image Classification with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">14. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TrainandDeployObj_YOLO.html">15. Training and Deploying Object Detection with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">16. Ice Seal Classification using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanCVLocalizing_YOLO.html">17. Localizing the OceanCV FirstPass Model to a New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keypoint_YOLO.html">18. Keypoint Detection With YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstanceSegmentation_YOLO.html">19. Instance Segmentation with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">23. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Writing a Model Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">25. Creating Streamlit Applications for YOLOv11 Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreMIWSurvey.html">Survey Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_CNN.html">The Math Behind Convolutional Neural Networks (CNNs)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/edit/main/book/Final_ModelCard.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/issues/new?title=Issue%20on%20page%20%2Fbook/Final_ModelCard.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/Final_ModelCard.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Writing a Model Card</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-card-structure">24.1. Model Card Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">24.1.1. 1. Model Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intended-use">24.1.2. 2. Intended Use</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factors">24.1.3. 3. Factors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">24.1.4. 4. Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">24.1.5. 5. Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendations">24.1.6. 6. Recommendations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caveats-and-limitations">24.1.7. 7. Caveats and Limitations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-risks-and-harms">24.1.8. 8. Bias, Risks, and Harms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-impact">24.1.9. 9. Environmental Impact</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use">24.1.10. 10. How to Use</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-and-preprocessing-details">24.1.11. 11. Dataset and Preprocessing Details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-configuration-details">24.1.12. 12. Training Configuration Details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-epoch-64">24.1.13. 13. Metrics (Epoch 64)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-considerations">24.1.14. Key Considerations</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="writing-a-model-card">
+<h1><span class="section-number">24. </span>Writing a Model Card<a class="headerlink" href="#writing-a-model-card" title="Link to this heading">#</a></h1>
+<p>A model card provides essential information about a machine learning model, including its intended use, performance metrics, limitations, and potential biases. It promotes transparency and helps users understand whether the model is suitable for their specific use case. Here’s a guide on how to write an effective model card, using the NOAA AFSC Marine Mammal Lab YOLOv11 Ice Seal Object Detection Model as an example.</p>
+<section id="model-card-structure">
+<h2><span class="section-number">24.1. </span>Model Card Structure<a class="headerlink" href="#model-card-structure" title="Link to this heading">#</a></h2>
+<section id="model-overview">
+<h3><span class="section-number">24.1.1. </span>1. Model Overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Model Name:</strong> NOAA AFSC Marine Mammal Lab YOLOv11 Ice Seal Object Detection Model</p></li>
+<li><p><strong>Description:</strong></p>
+<ul>
+<li><p>Accurate identification of ice-associated seals in aerial imagery is essential for monitoring population dynamics and assessing ecological trends in Arctic and sub-Arctic environments. To facilitate the fast and accurate detection of these seals, I have developed a deep learning-based object detection model utilizing YOLOV11n, a lightweight neural network architecture optimized for high-performance image analysis. The model, comprising 319 layers and 2,591,400 parameters, was trained on a diverse dataset containing 7,671 high-resolution images, which were tiled into 30,684 smaller images to enhance feature recognition.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="intended-use">
+<h3><span class="section-number">24.1.2. </span>2. Intended Use<a class="headerlink" href="#intended-use" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Primary Use Case:</strong> Object detection of ice-associated seals in aerial imagery.</p></li>
+<li><p><strong>Specific Applications:</strong></p>
+<ul>
+<li><p>Monitoring population dynamics.</p></li>
+<li><p>Assessing ecological trends in Arctic and sub-Arctic environments.</p></li>
+<li><p>ROI detector for imaging surveys.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="factors">
+<h3><span class="section-number">24.1.3. </span>3. Factors<a class="headerlink" href="#factors" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Relevant Factors:</strong></p>
+<ul>
+<li><p>Species: Bearded, ribbon, ringed, and spotted seals (both pup and adult stages).</p></li>
+<li><p>Imagery Conditions: High-resolution aerial images.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="metrics">
+<h3><span class="section-number">24.1.4. </span>4. Metrics<a class="headerlink" href="#metrics" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Overall mAP:</strong> 0.4833</p></li>
+<li><p><strong>Class-Specific mAP:</strong></p>
+<ul>
+<li><p>Bearded Seals: 0.9</p></li>
+<li><p>Ringed Seals: 0.833</p></li>
+<li><p>Ribbon Seals: 0.464</p></li>
+</ul>
+</li>
+<li><p><strong>Precision:</strong> 0.76783</p></li>
+<li><p><strong>Recall:</strong> 0.43806</p></li>
+</ul>
+</section>
+<section id="evaluation">
+<h3><span class="section-number">24.1.5. </span>5. Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dataset Details:</strong></p>
+<ul>
+<li><p>7,671 high-resolution images tiled into 30,684 smaller images.</p></li>
+<li><p>8,948 total annotations.</p></li>
+</ul>
+</li>
+<li><p><strong>Training Configuration:</strong></p>
+<ul>
+<li><p>Image Size: 1024 × 1024</p></li>
+<li><p>Batch Size: 113</p></li>
+<li><p>Optimizer: SGD (lr=0.01, momentum=0.9)</p></li>
+<li><p>Hardware: NVIDIA A100 GPU</p></li>
+</ul>
+</li>
+<li><p><strong>Augmentations:</strong></p>
+<ul>
+<li><p>Blur, MedianBlur, ToGray, CLAHE</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="recommendations">
+<h3><span class="section-number">24.1.6. </span>6. Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Optimal Performance:</strong> Detecting ringed, spotted, and bearded seals.</p></li>
+<li><p><strong>Underrepresented Classes:</strong> Misclassification is more common, though false negatives remain rare.</p></li>
+<li><p><strong>Review Pipeline:</strong> Intended for manual verification in certain workflows.</p></li>
+<li><p><strong>Downstream Tasks:</strong> Clustering, two-shot fine-tuning, or in-depth analytics.</p></li>
+<li><p><strong>Real-Time Inference:</strong> Best to use the YOLO model.</p></li>
+</ul>
+</section>
+<section id="caveats-and-limitations">
+<h3><span class="section-number">24.1.7. </span>7. Caveats and Limitations<a class="headerlink" href="#caveats-and-limitations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Pup Classes:</strong> Consistently underperformed due to smaller size and limited representation.</p></li>
+<li><p><strong>Misclassification:</strong> Underrepresented classes tend to be misclassified rather than completely missed.</p></li>
+</ul>
+</section>
+<section id="bias-risks-and-harms">
+<h3><span class="section-number">24.1.8. </span>8. Bias, Risks, and Harms<a class="headerlink" href="#bias-risks-and-harms" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Potential Biases:</strong></p>
+<ul>
+<li><p>Imbalanced class distribution may affect performance on underrepresented classes.</p></li>
+</ul>
+</li>
+<li><p><strong>Mitigation Strategies:</strong></p>
+<ul>
+<li><p>Rebalance Train/Val splits.</p></li>
+<li><p>Ensure enough representative classes in the dataset.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="environmental-impact">
+<h3><span class="section-number">24.1.9. </span>9. Environmental Impact<a class="headerlink" href="#environmental-impact" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Compute Location:</strong> Google Cloud Platform (GCP), northamerica-northeast1 region</p></li>
+<li><p><strong>Carbon Efficiency:</strong> 0.03 kgCO₂eq/kWh</p></li>
+<li><p><strong>Hardware:</strong> A100 PCIe 40/80GB (TDP of 250W)</p></li>
+<li><p><strong>Compute Duration:</strong> ~10 hours</p></li>
+<li><p><strong>Total Emissions:</strong> ~0.07 kgCO₂eq</p></li>
+</ul>
+</section>
+<section id="how-to-use">
+<h3><span class="section-number">24.1.10. </span>10. How to Use<a class="headerlink" href="#how-to-use" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Inference Code Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ultralytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YOLO</span>
+
+<span class="c1"># Load your custom-trained weights</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s2">&quot;path/to/NOAA_AFSC_MML_Iceseals_31K.pt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Inference on a still image</span>
+<span class="n">results_image</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="s2">&quot;path/to/your_image.jpg&quot;</span><span class="p">,</span>
+    <span class="n">conf</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>   <span class="c1"># Confidence threshold</span>
+    <span class="n">iou</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span>    <span class="c1"># IoU threshold</span>
+    <span class="n">device</span><span class="o">=</span><span class="mi">0</span>     <span class="c1"># Use GPU 0 if available; set to &#39;cpu&#39; if no GPU</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="dataset-and-preprocessing-details">
+<h3><span class="section-number">24.1.11. </span>11. Dataset and Preprocessing Details<a class="headerlink" href="#dataset-and-preprocessing-details" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Source Imagery:</strong></p>
+<ul class="simple">
+<li><p>Original resolution: 6048 × 4032</p></li>
+<li><p>Total source images: 7,671 (including 156 null examples)</p></li>
+<li><p>Resolution range: ~12.21 MP to ~24.39 MP</p></li>
+</ul>
+</li>
+<li><p><strong>Tiling:</strong></p>
+<ul class="simple">
+<li><p>Each source image was split into 4 tiles (2 rows × 2 columns) at 1024 × 1024.</p></li>
+<li><p>Post-tiling: 30,684 images.</p></li>
+</ul>
+</li>
+<li><p><strong>Annotations:</strong></p>
+<ul class="simple">
+<li><p>8,948 total annotations.</p></li>
+<li><p>~1.2 annotations per image on average.</p></li>
+</ul>
+</li>
+<li><p><strong>Class Distribution:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class Name</p></th>
+<th class="head"><p>Total Count</p></th>
+<th class="head"><p>Training Count</p></th>
+<th class="head"><p>Validation Count</p></th>
+<th class="head"><p>Test Count</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ringed_seal</p></td>
+<td><p>3180</p></td>
+<td><p>2190</p></td>
+<td><p>674</p></td>
+<td><p>316</p></td>
+</tr>
+<tr class="row-odd"><td><p>bearded_seal</p></td>
+<td><p>1922</p></td>
+<td><p>1392</p></td>
+<td><p>359</p></td>
+<td><p>171</p></td>
+</tr>
+<tr class="row-even"><td><p>spotted_seal</p></td>
+<td><p>1662</p></td>
+<td><p>1142</p></td>
+<td><p>344</p></td>
+<td><p>176</p></td>
+</tr>
+<tr class="row-odd"><td><p>unknown_seal</p></td>
+<td><p>812</p></td>
+<td><p>585</p></td>
+<td><p>153</p></td>
+<td><p>74</p></td>
+</tr>
+<tr class="row-even"><td><p>bearded_pup</p></td>
+<td><p>420</p></td>
+<td><p>300</p></td>
+<td><p>77</p></td>
+<td><p>43</p></td>
+</tr>
+<tr class="row-odd"><td><p>unknown_pup</p></td>
+<td><p>392</p></td>
+<td><p>275</p></td>
+<td><p>63</p></td>
+<td><p>54</p></td>
+</tr>
+<tr class="row-even"><td><p>spotted_pup</p></td>
+<td><p>238</p></td>
+<td><p>174</p></td>
+<td><p>46</p></td>
+<td><p>18</p></td>
+</tr>
+<tr class="row-odd"><td><p>ribbon_seal</p></td>
+<td><p>232</p></td>
+<td><p>154</p></td>
+<td><p>45</p></td>
+<td><p>33</p></td>
+</tr>
+<tr class="row-even"><td><p>ringed_pup</p></td>
+<td><p>54</p></td>
+<td><p>37</p></td>
+<td><p>14</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>ribbon_pup</p></td>
+<td><p>36</p></td>
+<td><p>28</p></td>
+<td><p>5</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</section>
+<section id="training-configuration-details">
+<h3><span class="section-number">24.1.12. </span>12. Training Configuration Details<a class="headerlink" href="#training-configuration-details" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Parameters:</strong></p>
+<ul>
+<li><p>Layers: 319</p></li>
+<li><p>Parameters: 2,591,400</p></li>
+<li><p>Gradients: 2,591,384</p></li>
+<li><p>GFLOPs: 6.4</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="metrics-epoch-64">
+<h3><span class="section-number">24.1.13. </span>13. Metrics (Epoch 64)<a class="headerlink" href="#metrics-epoch-64" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>epoch</p></th>
+<th class="head"><p>time</p></th>
+<th class="head"><p>train/box_loss</p></th>
+<th class="head"><p>train/cls_loss</p></th>
+<th class="head"><p>train/dfl_loss</p></th>
+<th class="head"><p>metrics/precision(B)</p></th>
+<th class="head"><p>metrics/recall(B)</p></th>
+<th class="head"><p>metrics/mAP50(B)</p></th>
+<th class="head"><p>metrics/mAP50-95(B)</p></th>
+<th class="head"><p>val/box_loss</p></th>
+<th class="head"><p>val/cls_loss</p></th>
+<th class="head"><p>val/dfl_loss</p></th>
+<th class="head"><p>lr/pg0</p></th>
+<th class="head"><p>lr/pg1</p></th>
+<th class="head"><p>lr/pg2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>64</p></td>
+<td><p>23230.9</p></td>
+<td><p>1.34616</p></td>
+<td><p>1.18894</p></td>
+<td><p>0.89475</p></td>
+<td><p>0.76783</p></td>
+<td><p>0.43806</p></td>
+<td><p>0.4671</p></td>
+<td><p>0.30454</p></td>
+<td><p>1.37059</p></td>
+<td><p>1.77372</p></td>
+<td><p>0.90735</p></td>
+<td><p>0.00993763</p></td>
+<td><p>0.00993763</p></td>
+<td><p>0.00993763</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="key-considerations">
+<h3><span class="section-number">24.1.14. </span>Key Considerations<a class="headerlink" href="#key-considerations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Transparency:</strong> Provide as much detail as possible about the model and its development process.</p></li>
+<li><p><strong>Accessibility:</strong> Use clear and straightforward language to make the model card accessible to a broad audience.</p></li>
+<li><p><strong>Completeness:</strong> Cover all relevant aspects of the model, including its intended use, performance, limitations, and ethical considerations.</p></li>
+</ul>
+<p>By following this structure, you can create a comprehensive model card that promotes transparency and enables users to make informed decisions about using your model.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Final_HFOrganization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Joining the OceanCV Hugging Face Organization and Uploading Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Final_StreamlitApps.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Creating Streamlit Applications for YOLOv11 Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-card-structure">24.1. Model Card Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-overview">24.1.1. 1. Model Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intended-use">24.1.2. 2. Intended Use</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factors">24.1.3. 3. Factors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">24.1.4. 4. Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">24.1.5. 5. Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendations">24.1.6. 6. Recommendations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caveats-and-limitations">24.1.7. 7. Caveats and Limitations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bias-risks-and-harms">24.1.8. 8. Bias, Risks, and Harms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-impact">24.1.9. 9. Environmental Impact</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use">24.1.10. 10. How to Use</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-and-preprocessing-details">24.1.11. 11. Dataset and Preprocessing Details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-configuration-details">24.1.12. 12. Training Configuration Details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-epoch-64">24.1.13. 13. Metrics (Epoch 64)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-considerations">24.1.14. Key Considerations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ada Carter & Katie Bigham
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,235 +1,580 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bibliography &#8212; Geospatial Data Science</title>
-    
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Bibliography &#8212; Computer Vision for Marine Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-      
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://giswqs.github.io/jb-demo/book/bibliography.html" />
-    <link rel="shortcut icon" href="../_static/fav.ico"/>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/bibliography';</script>
+    <link rel="canonical" href="https://atticus-carter.github.io/cv/book/bibliography.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Content with notebooks" href="notebooks.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="Survey Results" href="PreMIWSurvey.html" />
+    <link rel="prev" title="25. Creating Streamlit Applications for YOLOv11 Models" href="Final_StreamlitApps.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Geospatial Data Science</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="gee.html">
-   Google Earth Engine
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Bibliography
-  </a>
- </li>
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Computer Vision for Marine Applications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Computer Vision for Marine Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Landing.html">Welcome to Computer Vision Across the Marine Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tools.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License_Page.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Marine Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction_MarineImaging.html">1. Marine Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Imagery.html">2. Imagery Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanImageTypes.html">3. Ocean Image Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_AI.html">4. Artificial Intelligence in Marine Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transfer_Learning_Marine.html">5. Transfer Learning for Marine Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model_Interpretability_Marine.html">6. Model Interpretability for Marine Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Introduction to Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_CV.html">7. Image Annotation for Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_Man.html">8. Manual Image Annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ImShow.html">9. Exploring Image Data With ImShow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">10. Image Manipulation in Python with PIL and OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">11. Creating and Augmenting Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">12. Understanding CV Metrics and Graphs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Computer Vision Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">13. Image Classification with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">14. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TrainandDeployObj_YOLO.html">15. Training and Deploying Object Detection with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">16. Ice Seal Classification using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanCVLocalizing_YOLO.html">17. Localizing the OceanCV FirstPass Model to a New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keypoint_YOLO.html">18. Keypoint Detection With YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstanceSegmentation_YOLO.html">19. Instance Segmentation with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">23. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">24. Writing a Model Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">25. Creating Streamlit Applications for YOLOv11 Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreMIWSurvey.html">Survey Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_CNN.html">The Math Behind Convolutional Neural Networks (CNNs)</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/book/bibliography.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/edit/main/book/bibliography.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/issues/new?title=Issue%20on%20page%20%2Fbook/bibliography.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Source interaction buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/giswqs/jb-demo"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/giswqs/jb-demo/issues/new?title=Issue%20on%20page%20%2Fbook/bibliography.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/giswqs/jb-demo/edit/master/book/bibliography.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/bibliography.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
 
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
 
-            <!-- Launch buttons -->
 
-        </div>
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bibliography</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Bibliography</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+
+              
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="bibliography">
-<h1>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">¶</a></h1>
-<p id="id1"><dl class="citation">
-<dt class="label" id="id2"><span class="brackets">HdHPK14</span></dt>
-<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</dd>
-<dt class="label" id="id3"><span class="brackets">HdHP+16</span></dt>
-<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, Jochem W. Rieger, Nathan Crone, Jack J. Lin, Robert T. Knight, and Frédéric E. Theunissen. Rapid tuning shifts in human auditory cortex enhance speech intelligibility. <em>Nature Communications</em>, 7(May):13654, 2016. URL: <a class="reference external" href="http://www.nature.com/doifinder/10.1038/ncomms13654">http://www.nature.com/doifinder/10.1038/ncomms13654</a>, <a class="reference external" href="https://doi.org/10.1038/ncomms13654">doi:10.1038/ncomms13654</a>.</p>
-</dd>
-<dt class="label" id="id5"><span class="brackets">HRM+17</span></dt>
-<dd><p>Christopher Ramsay Holdgraf, J.W. Rieger, C. Micheli, S. Martin, R.T. Knight, and F.E. Theunissen. Encoding and decoding models in cognitive electrophysiology. <em>Frontiers in Systems Neuroscience</em>, 2017. <a class="reference external" href="https://doi.org/10.3389/fnsys.2017.00061">doi:10.3389/fnsys.2017.00061</a>.</p>
-</dd>
-</dl>
-</p>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bibliography">
+<h1>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h1>
+<div class="docutils container" id="id1">
+<div role="list" class="citation-list">
+<div class="citation" id="id28" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Seyed Babak Haji Seyed Asadollah, Najeebullah Khan, Ahmad Sharafati, Shamsuddin Shahid, Eun Sung Chung, and Xiao Jun Wang. Prediction of heat waves using meteorological variables in diverse regions of iran with advanced machine learning models. <em>Stochastic Environmental Research and Risk Assessment</em>, 2022. <a class="reference external" href="https://doi.org/10.1007/s00477-021-02103-z">doi:10.1007/s00477-021-02103-z</a>.</p>
 </div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>N. Baker. William thompson – the world's first underwater photographer. <em>Historical Diving Times</em>, 1997.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<p>Marco Balsi, Monica Moroni, Valter Chiarabini, and Giovanni Tanda. High-resolution aerial detection of marine plastic litter by hyperspectral sensing. <em>Remote Sensing</em>, 13(8):1557, 2021.</p>
+</div>
+<div class="citation" id="id26" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<p>Cigdem Beyan and Howard I. Browman. Setting the stage for the machine intelligence era in marine science. <em>ICES Journal of Marine Science</em>, 2020. <a class="reference external" href="https://doi.org/10.1093/icesjms/fsaa084">doi:10.1093/icesjms/fsaa084</a>.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
+<p>M Bhanumathi, R Gugan, and others. Marine plastic detection using deep learning. <em>Advances in Parallel Computing Algorithms, Tools and Paradigms</em>, pages 406–413, 2022.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<p>John A Burns, Kaitlyn P Becker, David Casagrande, Joost Daniels, Paul Roberts, Eric Orenstein, Daniel M Vogt, Zhi Ern Teoh, Ryan Wood, Alexander H Yin, and others. An in situ digital synthesis strategy for the discovery and description of ocean life. <em>Science Advances</em>, 10(3):eadj4960, 2024.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
+<p>Markus Diesing, Sophie L Green, David Stephens, R Murray Lark, Heather A Stewart, and Dayton Dove. Mapping seabed sediments: comparison of manual, geostatistical, object-based image analysis and machine learning approaches. <em>Continental Shelf Research</em>, 84:107–119, 2014.</p>
+</div>
+<div class="citation" id="id20" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
+<p>Jennifer M. Durden, Timm Schoening, Franziska Althaus, Ariell Friedman, Rafael Garcia, Adrian G. Glover, Jens Greinert, Nancy Jacobsen Stout, Daniel O.B. Jones, Anne Jordt, Jeffrey W. Kaeli, Kevin Köser, Linda A. Kuhnz, Dhugal Lindsay, Kirsty J. Morris, Tim W. Nattkemper, Jonas Osterloff, Henry A. Ruhl, Hanumant Singh, Maggie Tran, and Brian J. Bett. Perspectives in visual imaging for marine biology and ecology: from acquisition to understanding. <em>Oceanography and Marine Biology: An Annual Review</em>, 2016. <a class="reference external" href="https://doi.org/10.1201/9781315368597">doi:10.1201/9781315368597</a>.</p>
+</div>
+<div class="citation" id="id25" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
+<p>Ying gang Zheng, Hong sheng Zhang, Kai tuo Qi, and Long yu Ding. Stripe segmentation of oceanic internal waves in sar images based on segnet. <em>Geocarto International</em>, 2022. <a class="reference external" href="https://doi.org/10.1080/10106049.2021.2002430">doi:10.1080/10106049.2021.2002430</a>.</p>
+</div>
+<div class="citation" id="id31" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></span>
+<p>Yunhao Gao, Feng Gao, Junyu Dong, and Shengke Wang. Transferred deep learning for sea ice change detection from synthetic-aperture radar images. <em>IEEE Geoscience and Remote Sensing Letters</em>, 2019. <a class="reference external" href="https://doi.org/10.1109/LGRS.2019.2906279">doi:10.1109/LGRS.2019.2906279</a>.</p>
+</div>
+<div class="citation" id="id34" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></span>
+<p>Bernabe Gomez and Usama Kadri. Earthquake source characterization by machine learning algorithms applied to acoustic signals. <em>Scientific Reports</em>, 11(1):23062, 2021.</p>
+</div>
+<div class="citation" id="id29" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></span>
+<p>Yoo Geun Ham, Jeong Hwan Kim, and Jing Jia Luo. Deep learning for multi-year enso forecasts. <em>Nature</em>, 2019. <a class="reference external" href="https://doi.org/10.1038/s41586-019-1559-7">doi:10.1038/s41586-019-1559-7</a>.</p>
+</div>
+<div class="citation" id="id33" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></span>
+<p>Ali K Ibrahim, Hanqi Zhuang, Laurent M Chérubin, Nurgun Erdol, Gregory O'Corry-Crowe, and Ali Muhamed Ali. A multimodel deep learning algorithm to detect north atlantic right whale up-calls. <em>The Journal of the Acoustical Society of America</em>, 150(2):1264–1272, 2021.</p>
+</div>
+<div class="citation" id="id22" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></span>
+<p>Alan J. Jamieson, Ben Boorman, and Daniel O.B. Jones. Deep-sea benthic sampling. <em>Methods for the Study of Marine Benthos</em>, 2013. <a class="reference external" href="https://doi.org/10.1002/9781118542392.ch7">doi:10.1002/9781118542392.ch7</a>.</p>
+</div>
+<div class="citation" id="id27" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></span>
+<p>Sihun Jung, Young Jun Kim, Sumin Park, and Jungho Im. Prediction of sea surface temperature and detection of ocean heat wave in the south sea of korea using time-series deep-learning approaches. <em>Korean Journal of Remote Sensing</em>, 2020. <a class="reference external" href="https://doi.org/10.7780/kjrs.2020.36.5.3.7">doi:10.7780/kjrs.2020.36.5.3.7</a>.</p>
+</div>
+<div class="citation" id="id2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
+<p>Donna M Kocak and Frank M Caimi. The current art of underwater imaging–with a glimpse of the past and vision of the future. <em>Marine Technology Society Journal</em>, 39(3):5–26, 2005.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></span>
+<p>Jianfei Liu, William J Emery, Xiongbin Wu, Miao Li, Chuan Li, and Lan Zhang. Computing coastal ocean surface currents from modis and viirs satellite imagery. <em>Remote Sensing</em>, 9(10):1083, 2017.</p>
+</div>
+<div class="citation" id="id21" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>18<span class="fn-bracket">]</span></span>
+<p>Delphine Mallet and Dominique Pelletier. Underwater video techniques for observing coastal marine biodiversity: a review of sixty years of publications (1952-2012). <em>Fisheries Research</em>, 2014. <a class="reference external" href="https://doi.org/10.1016/j.fishres.2014.01.019">doi:10.1016/j.fishres.2014.01.019</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>19<span class="fn-bracket">]</span></span>
+<p>Aaron Marburg and Katie Bigham. Deep learning for benthic fauna identification. <em>OCEANS 2016 MTS/IEEE Monterey</em>, pages 1–5, 2016. <a class="reference external" href="https://doi.org/10.1109/OCEANS.2016.7761146">doi:10.1109/OCEANS.2016.7761146</a>.</p>
+</div>
+<div class="citation" id="id15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>20<span class="fn-bracket">]</span></span>
+<p>Andreas Marouchos, Matthew Sherlock, and Jeff Cordell. Challenges in underwater image capture. <em>IEEE</em>, pages 1–5, 2018.</p>
+</div>
+<div class="citation" id="id24" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>21<span class="fn-bracket">]</span></span>
+<p>Xiaoyi Pan, Jing Wang, Xudong Zhang, Yuan Mei, Lu Shi, and Guoqiang Zhong. A deep-learning model for the amplitude inversion of internal waves based on optical remote-sensing images. <em>International Journal of Remote Sensing</em>, 2018. <a class="reference external" href="https://doi.org/10.1080/01431161.2017.1390269">doi:10.1080/01431161.2017.1390269</a>.</p>
+</div>
+<div class="citation" id="id32" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>22<span class="fn-bracket">]</span></span>
+<p>Nabil Panchi, Ekaterina Kim, and Anirban Bhattacharyya. Supplementing remote sensing of ice: deep learning-based image segmentation system for automatic detection and localization of sea-ice formations from close-range optical images. <em>IEEE Sensors Journal</em>, 2021. <a class="reference external" href="https://doi.org/10.1109/JSEN.2021.3084556">doi:10.1109/JSEN.2021.3084556</a>.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>23<span class="fn-bracket">]</span></span>
+<p>Nils Piechaud, Christopher Hunt, Phil F Culverhouse, Nicola L Foster, and Kerry L Howell. Automated identification of benthic epifauna with computer vision. <em>Marine Ecology Progress Series</em>, 615:15–30, 2019.</p>
+</div>
+<div class="citation" id="id17" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>24<span class="fn-bracket">]</span></span>
+<p>Peter Rubbens, Stephanie Brodie, Tristan Cordier, Diogo Destro Barcellos, Paul Devos, Jose A. Fernandes-Salvador, Jennifer I. Fincham, Alessandra Gomes, Nils Olav Handegard, Kerry Howell, Cédric Jamet, Kyrre Heldal Kartveit, Hassan Moustahfid, Clea Parcerisas, Dimitris Politikos, Raphaëlle Sauzède, Maria Sokolova, Laura Uusitalo, Laure Van Den Bulcke, Aloysius T.M. Van Helmond, Jordan T. Watson, Heather Welch, Oscar Beltran-Perez, Samuel Chaffron, David S. Greenberg, Bernhard Kühn, Rainer Kiko, Madiop Lo, Rubens M. Lopes, Klas Ove Möller, William Michaels, Ahmet Pala, Jean Baptiste Romagnan, Pia Schuchert, Vahid Seydi, Sebastian Villasante, Ketil Malde, and Jean Olivier Irisson. Machine learning in marine ecology: an overview of techniques and applications. <em>ICES Journal of Marine Science</em>, 2023. <a class="reference external" href="https://doi.org/10.1093/icesjms/fsad100">doi:10.1093/icesjms/fsad100</a>.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>25<span class="fn-bracket">]</span></span>
+<p>Timm Schoening, Jennifer M Durden, Claas Faber, Janine Felden, Karl Heger, Henk-Jan T Hoving, Rainer Kiko, Kevin Köser, Christopher Krämmer, Tom Kwasnitschka, and others. Making marine image data fair. <em>Scientific data</em>, 9(1):414, 2022.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>26<span class="fn-bracket">]</span></span>
+<p>Timm Schoening, Jonas Osterloff, and Tim W. Nattkemper. Recomia-recommendations for marine image annotation: lessons learned and future directions. <em>Frontiers in Marine Science</em>, 2016. <a class="reference external" href="https://doi.org/10.3389/fmars.2016.00059">doi:10.3389/fmars.2016.00059</a>.</p>
+</div>
+<div class="citation" id="id23" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>27<span class="fn-bracket">]</span></span>
+<p>Chris J. Smith and Heye Rumohr. Imaging techniques. <em>Methods for the Study of Marine Benthos</em>, 2013. <a class="reference external" href="https://doi.org/10.1002/9781118542392.ch3">doi:10.1002/9781118542392.ch3</a>.</p>
+</div>
+<div class="citation" id="id16" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>28<span class="fn-bracket">]</span></span>
+<p>Tao Song, Cong Pang, Boyang Hou, Guangxu Xu, Junyu Xue, Handan Sun, and Fan Meng. A review of artificial intelligence in marine science. <em>Frontiers in Earth Science</em>, 2023. <a class="reference external" href="https://doi.org/10.3389/feart.2023.1090185">doi:10.3389/feart.2023.1090185</a>.</p>
+</div>
+<div class="citation" id="id19" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>29<span class="fn-bracket">]</span></span>
+<p>Orkhan V. Valikhanli. The visual digital turn: using neural networks to study historical images. <em>Problems of Information Technology</em>, 2023. <a class="reference external" href="https://doi.org/10.25045/jpit.v14.i1.02">doi:10.25045/jpit.v14.i1.02</a>.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>30<span class="fn-bracket">]</span></span>
+<p>Daniele Ventura, Andrea Bonifazi, Maria Flavia Gravina, Andrea Belluscio, and Giandomenico Ardizzone. Mapping and classification of ecologically sensitive marine habitats using unmanned aerial vehicle (uav) imagery and object-based image analysis (obia). <em>Remote Sensing</em>, 10(9):1331, 2018.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>31<span class="fn-bracket">]</span></span>
+<p>Marinos Vlachos and Dimitrios Skarlatos. An extensive literature review on underwater image colour correction. <em>Sensors</em>, 21(17):5690, 2021.</p>
+</div>
+<div class="citation" id="id18" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>32<span class="fn-bracket">]</span></span>
+<p>Melvin Wevers and Thomas Smits. The visual digital turn: using neural networks to study historical images. <em>Digital Scholarship in the Humanities</em>, 2019. <a class="reference external" href="https://doi.org/10.1093/llc/fqy085">doi:10.1093/llc/fqy085</a>.</p>
+</div>
+<div class="citation" id="id30" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>33<span class="fn-bracket">]</span></span>
+<p>Min Ye, Jie Nie, Anan Liu, Zhigang Wang, Lei Huang, Hao Tian, Dehai Song, and Zhiqiang Wei. Multi-year enso forecasts using parallel convolutional neural networks with heterogeneous architecture. <em>Frontiers in Marine Science</em>, 2021. <a class="reference external" href="https://doi.org/10.3389/fmars.2021.717184">doi:10.3389/fmars.2021.717184</a>.</p>
+</div>
+</div>
+</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -243,7 +588,7 @@ const thebe_selector_output = ".output, .cell_output"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./book"
         },
         predefinedOutput: true
@@ -251,37 +596,88 @@ const thebe_selector_output = ".output, .cell_output"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="notebooks.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Content with notebooks</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Final_StreamlitApps.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Creating Streamlit Applications for YOLOv11 Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="PreMIWSurvey.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Survey Results</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Qiusheng Wu<br/>
-    
-        &copy; Copyright 2022.<br/>
-  </p>
-</footer>
-</main>
-
-
-      </div>
-    </div>
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ada Carter & Katie Bigham
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

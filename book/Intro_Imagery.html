@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Imagery Fundamentals &#8212; Computer Vision for Marine Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Intro_Imagery';</script>
+    <link rel="canonical" href="https://atticus-carter.github.io/cv/book/Intro_Imagery.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Ocean Image Data" href="OceanImageTypes.html" />
+    <link rel="prev" title="1. Marine Imaging" href="Introduction_MarineImaging.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Computer Vision for Marine Applications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Computer Vision for Marine Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Landing.html">Welcome to Computer Vision Across the Marine Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tools.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License_Page.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Marine Imaging</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction_MarineImaging.html">1. Marine Imaging</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Imagery Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanImageTypes.html">3. Ocean Image Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_AI.html">4. Artificial Intelligence in Marine Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transfer_Learning_Marine.html">5. Transfer Learning for Marine Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model_Interpretability_Marine.html">6. Model Interpretability for Marine Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Introduction to Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_CV.html">7. Image Annotation for Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_Man.html">8. Manual Image Annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ImShow.html">9. Exploring Image Data With ImShow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">10. Image Manipulation in Python with PIL and OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">11. Creating and Augmenting Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">12. Understanding CV Metrics and Graphs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Computer Vision Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">13. Image Classification with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">14. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TrainandDeployObj_YOLO.html">15. Training and Deploying Object Detection with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">16. Ice Seal Classification using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanCVLocalizing_YOLO.html">17. Localizing the OceanCV FirstPass Model to a New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keypoint_YOLO.html">18. Keypoint Detection With YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstanceSegmentation_YOLO.html">19. Instance Segmentation with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">23. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">24. Writing a Model Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">25. Creating Streamlit Applications for YOLOv11 Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreMIWSurvey.html">Survey Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_CNN.html">The Math Behind Convolutional Neural Networks (CNNs)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/edit/main/book/Intro_Imagery.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/issues/new?title=Issue%20on%20page%20%2Fbook/Intro_Imagery.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/Intro_Imagery.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Imagery Fundamentals</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">2.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">2.1.1. Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-image">2.2. What is an image?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-image-types">2.3. Fundamental image types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#video-and-still-images">2.3.1. Video and still images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monocular-stereo-and-omnidirectional-photography">2.3.2. Monocular, stereo, and omnidirectional photography</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-and-monochrome-photography">2.3.3. Color and monochrome photography</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-conventional-photography">2.3.4. Non-conventional photography</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="imagery-fundamentals">
+<h1><span class="section-number">2. </span>Imagery Fundamentals<a class="headerlink" href="#imagery-fundamentals" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">2.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this lesson, we will explore some fundamentals of imagery. Understanding these basics will help with understanding <strong>Marine Imagery</strong> and <strong>Computer Vision (CV)</strong> techniques.</p>
+<section id="learning-objectives">
+<h3><span class="section-number">2.1.1. </span>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h3>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p>Understand what an image is</p></li>
+<li><p>Identify fundamental image types used in marine imaging</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="what-is-an-image">
+<h2><span class="section-number">2.2. </span>What is an image?<a class="headerlink" href="#what-is-an-image" title="Link to this heading">#</a></h2>
+<p>The dictionary definition of an image as given by Merriam-Webster is:</p>
+<p>A) a visual representation of something: such as</p>
+<ol class="arabic simple">
+<li><p>a likeness of an object produced on a photographic material</p></li>
+<li><p>a picture produced on an electronic display (such as a television or computer screen)</p></li>
+</ol>
+<p>B) the optical counterpart of an object produced by an optical device (such as a lens or mirror) or an electronic device</p>
+<p>Images are composed of pixels. The word pixel comes from <strong>pic</strong>ture <strong>el</strong>ments and to the computer each pixel is simply a number.</p>
+<figure class="align-default" id="pixel-example">
+<img alt="../_images/pixel_lincoln.png" src="../_images/pixel_lincoln.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Image of Abraham Lincoln as a matrix of pixel values. Example of how images are displayed for human users versus how the image appears to the computer. Credit: <span class="bibtex-citation" id="id1">[<a class="reference internal" href="bibliography.html#id18" title="Melvin Wevers and Thomas Smits. The visual digital turn: using neural networks to study historical images. Digital Scholarship in the Humanities, 2019. doi:10.1093/llc/fqy085.">Wevers and Smits, 2019</a>]</span></span><a class="headerlink" href="#pixel-example" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="fundamental-image-types">
+<h2><span class="section-number">2.3. </span>Fundamental image types<a class="headerlink" href="#fundamental-image-types" title="Link to this heading">#</a></h2>
+<section id="video-and-still-images">
+<h3><span class="section-number">2.3.1. </span>Video and still images<a class="headerlink" href="#video-and-still-images" title="Link to this heading">#</a></h3>
+<p>Video captures moving objects via a series of images known as frames while still photography captures freezes a moment in a single frame.</p>
+<p>For marine science studies video and still images capture different types of information. Video or time-lapse still imagery allows for observation of behavior, interactions between fauna and their habitat, and changes over time. Individual still images are often used for spatial studies and typically have a higher resolution than images from video <span class="bibtex-citation" id="id2">[<a class="reference internal" href="bibliography.html#id22" title="Alan J. Jamieson, Ben Boorman, and Daniel O.B. Jones. Deep-sea benthic sampling. Methods for the Study of Marine Benthos, 2013. doi:10.1002/9781118542392.ch7.">Jamieson <em>et al.</em>, 2013</a>]</span>, though improvements in technology are narrowing this gap.</p>
+</section>
+<section id="monocular-stereo-and-omnidirectional-photography">
+<h3><span class="section-number">2.3.2. </span>Monocular, stereo, and omnidirectional photography<a class="headerlink" href="#monocular-stereo-and-omnidirectional-photography" title="Link to this heading">#</a></h3>
+<p>Both video and still imagery can be captured by monocular, stereo, and omnidirectional systems. <strong>Monocular</strong>, <strong>stereo</strong>, and <strong>omnidirectional</strong> refer to the number of cameras that make up the capture system. Monocular of single camera systems are most commonly used in marine studies, but stereo systems provide additional information and thus are popular in fisheries science for the determination of fish size as well as abundance <span class="bibtex-citation" id="id3">[<a class="reference internal" href="bibliography.html#id20" title="Jennifer M. Durden, Timm Schoening, Franziska Althaus, Ariell Friedman, Rafael Garcia, Adrian G. Glover, Jens Greinert, Nancy Jacobsen Stout, Daniel O.B. Jones, Anne Jordt, Jeffrey W. Kaeli, Kevin Köser, Linda A. Kuhnz, Dhugal Lindsay, Kirsty J. Morris, Tim W. Nattkemper, Jonas Osterloff, Henry A. Ruhl, Hanumant Singh, Maggie Tran, and Brian J. Bett. Perspectives in visual imaging for marine biology and ecology: from acquisition to understanding. Oceanography and Marine Biology: An Annual Review, 2016. doi:10.1201/9781315368597.">Durden <em>et al.</em>, 2016</a>]</span>.</p>
+<figure class="align-default" id="mono-stereo-example">
+<img alt="../_images/mono_stereo.jpg" src="../_images/mono_stereo.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">(a) Monocular and (b) stereo camera, courtesy of ELP, from <span class="bibtex-citation" id="id4">[<a class="reference internal" href="bibliography.html#id19" title="Orkhan V. Valikhanli. The visual digital turn: using neural networks to study historical images. Problems of Information Technology, 2023. doi:10.25045/jpit.v14.i1.02.">Valikhanli, 2023</a>]</span></span><a class="headerlink" href="#mono-stereo-example" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="color-and-monochrome-photography">
+<h3><span class="section-number">2.3.3. </span>Color and monochrome photography<a class="headerlink" href="#color-and-monochrome-photography" title="Link to this heading">#</a></h3>
+<p>As with video vs still imagery and monocular vs stereo camera systems, the capture of imagery in color or black and white (monochrome) is dependent on the needs of the study. Monochrome and greyscale images may have better resolution than color imagery and may be useful in turbid or low light conditions due to the reduction in scatter light. While color images may be necessary for studies with taxonomic identification goals <span class="bibtex-citation" id="id5">[<a class="reference internal" href="bibliography.html#id23" title="Chris J. Smith and Heye Rumohr. Imaging techniques. Methods for the Study of Marine Benthos, 2013. doi:10.1002/9781118542392.ch3.">Smith and Rumohr, 2013</a>]</span>.</p>
+</section>
+<section id="non-conventional-photography">
+<h3><span class="section-number">2.3.4. </span>Non-conventional photography<a class="headerlink" href="#non-conventional-photography" title="Link to this heading">#</a></h3>
+<p>There are many non-conventional photographic systems that are used in the marine environments such as</p>
+<ul class="simple">
+<li><p>Multispectral fluorescence imaging to observe bioluminescence</p></li>
+<li><p>3-dimensional laser holography to quantify and identify plankton and measure their geometry.</p></li>
+<li><p>Shadowgraph illumination and other systems that use dark-field illumination to image plankton and other particles.</p></li>
+<li><p>Light-field cameras which allow for the focus in images to be changed after capture, and allow for imaging of the seafloor and objects above it at the same time.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Introduction_MarineImaging.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Marine Imaging</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="OceanImageTypes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Ocean Image Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">2.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">2.1.1. Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-image">2.2. What is an image?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-image-types">2.3. Fundamental image types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#video-and-still-images">2.3.1. Video and still images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monocular-stereo-and-omnidirectional-photography">2.3.2. Monocular, stereo, and omnidirectional photography</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#color-and-monochrome-photography">2.3.3. Color and monochrome photography</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-conventional-photography">2.3.4. Non-conventional photography</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ada Carter & Katie Bigham
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

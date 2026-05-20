@@ -1,0 +1,1079 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Math Behind Convolutional Neural Networks (CNNs) &#8212; Computer Vision for Marine Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Introduction_CNN';</script>
+    <link rel="canonical" href="https://atticus-carter.github.io/cv/book/Introduction_CNN.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Survey Results" href="PreMIWSurvey.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Computer Vision for Marine Applications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Computer Vision for Marine Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Landing.html">Welcome to Computer Vision Across the Marine Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tools.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License_Page.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Marine Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction_MarineImaging.html">1. Marine Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Imagery.html">2. Imagery Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanImageTypes.html">3. Ocean Image Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_AI.html">4. Artificial Intelligence in Marine Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transfer_Learning_Marine.html">5. Transfer Learning for Marine Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model_Interpretability_Marine.html">6. Model Interpretability for Marine Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Introduction to Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_CV.html">7. Image Annotation for Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_Man.html">8. Manual Image Annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ImShow.html">9. Exploring Image Data With ImShow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">10. Image Manipulation in Python with PIL and OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">11. Creating and Augmenting Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">12. Understanding CV Metrics and Graphs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Computer Vision Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">13. Image Classification with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">14. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TrainandDeployObj_YOLO.html">15. Training and Deploying Object Detection with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">16. Ice Seal Classification using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanCVLocalizing_YOLO.html">17. Localizing the OceanCV FirstPass Model to a New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keypoint_YOLO.html">18. Keypoint Detection With YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstanceSegmentation_YOLO.html">19. Instance Segmentation with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">23. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">24. Writing a Model Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">25. Creating Streamlit Applications for YOLOv11 Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreMIWSurvey.html">Survey Results</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Math Behind Convolutional Neural Networks (CNNs)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/atticus-carter/cv/master?urlpath=tree/book/Introduction_CNN.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/atticus-carter/cv/blob/master/book/Introduction_CNN.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/edit/main/book/Introduction_CNN.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/issues/new?title=Issue%20on%20page%20%2Fbook/Introduction_CNN.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/Introduction_CNN.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Math Behind Convolutional Neural Networks (CNNs)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-cnn">What is a CNN?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-are-cnns-ubiquitous-in-marine-imagery">Why are CNNs Ubiquitous in Marine Imagery?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#annotations-in-cnns-bounding-boxes">Annotations in CNNs: Bounding Boxes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundations-of-cnns">Mathematical Foundations of CNNs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images-as-data-and-why-grayscale-is-used">Images as Data and Why Grayscale is Used</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-convert-to-grayscale">Why Convert to Grayscale?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-machines-see-images">How Machines See Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutions">Convolutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-formula">Convolution Formula</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-kernels">Filters / Kernels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stride-and-padding">Stride and Padding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pooling">Pooling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-hierarchical-features">Building Hierarchical Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code-in-pytorch">Example Code in PyTorch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-move-onto-a-more-complex-example">Let’s Move onto a More Complex Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breakdown-of-the-code-blocks">Breakdown of the Code Blocks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-1-importing-libraries">Block 1: Importing Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-uploading-the-image">Block 2: Uploading the Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-opening-and-preprocessing-the-image">Block 3: Opening and Preprocessing the Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-4-converting-the-image-to-a-pytorch-tensor">Block 4: Converting the Image to a PyTorch Tensor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-5-defining-the-edge-detection-filter">Block 5: Defining the Edge Detection Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-applying-the-filter">Block 6: Applying the Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-7-converting-the-filtered-image-for-display">Block 7: Converting the Filtered Image for Display</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-8-displaying-the-images">Block 8: Displaying the Images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-example">Video Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnns-and-multiple-layers">CNNs and Multiple Layers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-cnns-use-multiple-layers">How CNNs Use Multiple Layers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-of-next-section-how-weights-change-during-training">Preview of next section : how Weights Change During Training</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-math-behind-convolutional-neural-networks-cnns">
+<span id="lesson-6"></span><h1>The Math Behind Convolutional Neural Networks (CNNs)<a class="headerlink" href="#the-math-behind-convolutional-neural-networks-cnns" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this lesson, we will explore the basic mathematical concepts that form the foundation of <strong>Convolutional Neural Networks (CNNs)</strong>, one of the most popular models used in <strong>Computer Vision</strong>. We will discuss concepts such as <strong>convolutions</strong>, <strong>filters</strong>, <strong>stride</strong>, and <strong>padding</strong>, and how these operations help in extracting meaningful features from images for tasks like object detection, classification, and segmentation.</p>
+<section id="learning-objectives">
+<h3>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h3>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p>Understand how images are represented as numerical data and why grayscale images are often used in CNNs.</p></li>
+<li><p>Learn how to apply a single-layer convolution to detect edges in an image.</p></li>
+<li><p>Explore how deeper CNNs are structured and how they use multiple layers to extract complex features.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="what-is-a-cnn">
+<h3>What is a CNN?<a class="headerlink" href="#what-is-a-cnn" title="Link to this heading">#</a></h3>
+<p>A <strong>Convolutional Neural Network (CNN)</strong> is a type of deep learning model specifically designed to process grid-like data, such as images. Unlike traditional neural networks, CNNs use a special operation called <strong>convolution</strong> to automatically detect and learn important features in images, such as edges, shapes, and textures. This ability makes CNNs highly effective at recognizing objects in images without requiring manual feature extraction.</p>
+</section>
+<section id="why-are-cnns-ubiquitous-in-marine-imagery">
+<h3>Why are CNNs Ubiquitous in Marine Imagery?<a class="headerlink" href="#why-are-cnns-ubiquitous-in-marine-imagery" title="Link to this heading">#</a></h3>
+<p>In marine science, CNNs have become ubiquitous due to their ability to handle complex imagery data from sources like underwater cameras, aerial drones, and satellite imagery. Marine imagery often involves detecting, classifying, and tracking various objects, such as fish, corals, and other marine organisms, within diverse and noisy environments.</p>
+<p>CNNs are powerful in these tasks because they can:</p>
+<ul class="simple">
+<li><p><strong>Automatically identify features</strong> like shapes and patterns, even in challenging conditions such as low light or murky water.</p></li>
+<li><p><strong>Scale to large datasets</strong>, such as vast amounts of underwater footage or satellite imagery.</p></li>
+<li><p><strong>Handle variations</strong> in object size, orientation, and viewpoint, which are common in dynamic marine environments.</p></li>
+</ul>
+</section>
+<section id="annotations-in-cnns-bounding-boxes">
+<h3>Annotations in CNNs: Bounding Boxes<a class="headerlink" href="#annotations-in-cnns-bounding-boxes" title="Link to this heading">#</a></h3>
+<p>To train CNNs, annotated datasets are crucial. In the case of marine imagery, annotations are often in the form of <strong>bounding boxes</strong>. Bounding boxes are rectangular frames drawn around objects of interest within an image. For example, when detecting and classifying fish in an underwater video, bounding boxes are used to mark the locations of each fish.</p>
+<p>These annotations help the CNN learn which parts of an image correspond to specific objects. The model is trained to detect and predict bounding boxes for new, unseen images, allowing it to automatically identify and localize objects in marine imagery.</p>
+</section>
+</section>
+<section id="mathematical-foundations-of-cnns">
+<h2>Mathematical Foundations of CNNs<a class="headerlink" href="#mathematical-foundations-of-cnns" title="Link to this heading">#</a></h2>
+<p>Convolutional Neural Networks rely on mathematical operations that process image data in layers. The key operation is <strong>convolution</strong>, which is used to detect features in the input images.</p>
+<section id="images-as-data-and-why-grayscale-is-used">
+<h3>Images as Data and Why Grayscale is Used<a class="headerlink" href="#images-as-data-and-why-grayscale-is-used" title="Link to this heading">#</a></h3>
+<p>Before diving into the math behind CNNs, it’s important to understand how images are represented as data in a way that machines can process. While humans can look at an image and instinctively understand it, machines treat images as numerical matrices.</p>
+<p>An image is essentially a grid of pixel values, where each pixel represents some form of intensity or color information. For a <strong>grayscale image</strong>, this is simple: each pixel contains a single intensity value, typically ranging from 0 (black) to 255 (white). In the case of <strong>RGB images</strong> (red, green, blue), each pixel holds three values, one for each color channel. This makes RGB images a bit more complex, as the pixel data consists of three matrices (one for each channel). This is why for this lessons activity, the image will be translated to grayscale before processing</p>
+<section id="why-convert-to-grayscale">
+<h4>Why Convert to Grayscale?<a class="headerlink" href="#why-convert-to-grayscale" title="Link to this heading">#</a></h4>
+<p>Grayscale images are often used in CNNs because they simplify the data representation. Instead of working with three separate color channels (red, green, and blue), you only need to deal with one channel—the intensity of light. This reduces the computational complexity, allowing the model to focus on extracting important features like edges, shapes, and textures, which are key for object recognition.</p>
+<p>Grayscale images also help avoid color-related biases. For many computer vision tasks, the essential features of an image are independent of color. For instance, detecting edges or shapes is more important than detecting the exact color. Converting to grayscale strips away the additional information that may not be crucial for a particular task, ensuring that the network focuses purely on spatial structures.</p>
+</section>
+</section>
+<section id="how-machines-see-images">
+<h3>How Machines See Images<a class="headerlink" href="#how-machines-see-images" title="Link to this heading">#</a></h3>
+<p>Humans can abstract images and recognize objects or patterns even when presented with complex scenes. However, machines don’t “see” images the same way we do. For a machine, an image is nothing more than a matrix of numbers—each number representing the intensity of light at a specific location.</p>
+<p>When a machine processes an image, it uses mathematical operations like <strong>convolutions</strong> to extract numerical patterns from the image. These patterns help the machine recognize edges, textures, or specific features, like the shape of a fish or the outline of a crab leg. Unlike humans, who can effortlessly understand the meaning behind an image, a machine must systematically learn to detect patterns through data, which is why CNNs play a critical role in helping machines interpret and classify images.</p>
+</section>
+<section id="convolutions">
+<h3>Convolutions<a class="headerlink" href="#convolutions" title="Link to this heading">#</a></h3>
+<p>A convolution operation is essentially a way of applying a filter (kernel) to an image. The kernel slides over the input image, multiplying and summing the values to produce an output.</p>
+<section id="convolution-formula">
+<h4>Convolution Formula<a class="headerlink" href="#convolution-formula" title="Link to this heading">#</a></h4>
+<p>Let’s represent the convolution operation mathematically:<br />
+Given an image <span class="math notranslate nohighlight">\(I\)</span> and a filter <span class="math notranslate nohighlight">\(F\)</span> of size <span class="math notranslate nohighlight">\(m \times n\)</span>, the convolution at a position <span class="math notranslate nohighlight">\((x, y)\)</span> can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+S(x, y) = \sum_{i=0}^{m-1} \sum_{j=0}^{n-1} I(x+i, y+j) \cdot F(i,j)
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I(x, y)\)</span> is the pixel value at position <span class="math notranslate nohighlight">\((x, y)\)</span> in the input image.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F(i, j)\)</span> is the value of the filter at position <span class="math notranslate nohighlight">\((i, j)\)</span>, where <span class="math notranslate nohighlight">\(F\)</span> is of size <span class="math notranslate nohighlight">\(m \times n\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S(x, y)\)</span> is the output (or feature map) after applying the filter.</p></li>
+</ul>
+</section>
+</section>
+<section id="filters-kernels">
+<h3>Filters / Kernels<a class="headerlink" href="#filters-kernels" title="Link to this heading">#</a></h3>
+<p>Filters (also called kernels) are small matrices of weights that are applied to input images to extract features such as edges, textures, and more. For example, a 3x3 filter applied to an image can help detect vertical edges.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Define a simple vertical edge detection filter</span>
+<span class="n">edge_filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Applying this filter in a CNN will detect vertical edges in images.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stride-and-padding">
+<h3>Stride and Padding<a class="headerlink" href="#stride-and-padding" title="Link to this heading">#</a></h3>
+<p>Two other important concepts in CNNs are <strong>stride</strong> and <strong>padding</strong>.</p>
+<ul class="simple">
+<li><p><strong>Stride</strong>: Stride defines how the filter moves across the image. A stride of 1 means the filter moves one pixel at a time, whereas a stride of 2 skips every other pixel.</p></li>
+</ul>
+<p>Mathematically, if the stride is <span class="math notranslate nohighlight">\(s\)</span>, the output size after convolution is:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Output Size} = \frac{(N - F)}{s} + 1
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(N\)</span> is the input size and <span class="math notranslate nohighlight">\(F\)</span> is the filter size.</p>
+<ul class="simple">
+<li><p><strong>Padding</strong>: Padding refers to adding extra pixels (usually zeros) around the borders of the image. Padding helps preserve the spatial dimensions of the image after convolution, especially when filters reduce the size of the image.</p></li>
+</ul>
+</section>
+<section id="pooling">
+<h3>Pooling<a class="headerlink" href="#pooling" title="Link to this heading">#</a></h3>
+<p>Pooling is a downsampling operation used to reduce the spatial size of the feature maps. The most common type of pooling is <strong>max pooling</strong>, which takes the maximum value from a portion of the image.</p>
+<p>For example, in 2x2 max pooling:</p>
+<div class="math notranslate nohighlight">
+\[
+P(x, y) = \max \{I(x, y), I(x+1, y), I(x, y+1), I(x+1, y+1)\}
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="building-hierarchical-features">
+<h2>Building Hierarchical Features<a class="headerlink" href="#building-hierarchical-features" title="Link to this heading">#</a></h2>
+<p>CNNs learn hierarchical features through multiple convolutional layers. The first layers detect simple edges or colors, while deeper layers capture more complex structures like shapes or patterns.</p>
+<section id="example-code-in-pytorch">
+<h3>Example Code in PyTorch<a class="headerlink" href="#example-code-in-pytorch" title="Link to this heading">#</a></h3>
+<p>Below is a simple example of how a convolution operation is implemented in <strong>PyTorch</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+
+<span class="c1"># Define a convolutional layer</span>
+<span class="n">conv_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Example input (single-channel image)</span>
+<span class="n">input_image</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Apply the convolution</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">conv_layer</span><span class="p">(</span><span class="n">input_image</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input Image:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">input_image</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convolved Output:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, we defined a convolutional layer with a 3x3 filter, a stride of 1, and padding to preserve the image size.</p>
+</section>
+</section>
+<section id="let-s-move-onto-a-more-complex-example">
+<h2>Let’s Move onto a More Complex Example<a class="headerlink" href="#let-s-move-onto-a-more-complex-example" title="Link to this heading">#</a></h2>
+<p>This example can look daunting at first, but don’t worry, we will walk through it step by step. The purpose of this activity is to give you a practical example of how to apply the convolution techniques you’ve learned on an actual image. By the end of this exercise, you will understand how to upload an image, apply a convolution (edge detection), and display both the original and processed images side by side.</p>
+<section id="breakdown-of-the-code-blocks">
+<h3>Breakdown of the Code Blocks<a class="headerlink" href="#breakdown-of-the-code-blocks" title="Link to this heading">#</a></h3>
+<p>In this section, we will dissect each part of the code to understand its purpose.</p>
+</section>
+<section id="block-1-importing-libraries">
+<h3>Block 1: Importing Libraries<a class="headerlink" href="#block-1-importing-libraries" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This block is essential for setting up the environment. Here’s a breakdown of the imports:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">torch</span></code> and <code class="docutils literal notranslate"><span class="pre">torch.nn</span></code> are part of the PyTorch library, which we will use to define and apply the convolutional filter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code> will help us visualize the images.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> is used to handle arrays, which is the format that images take when processed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIL.Image</span></code> allows us to load and manipulate images.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">google.colab.files</span></code> is a utility that allows us to upload files directly into Google Colab.</p></li>
+</ul>
+</section>
+<section id="block-2-uploading-the-image">
+<h3>Block 2: Uploading the Image<a class="headerlink" href="#block-2-uploading-the-image" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This block prompts you to upload an image. It uses Colab’s <code class="docutils literal notranslate"><span class="pre">files.upload()</span></code> function to allow users to select and upload a file. For this exercise, we are working with a <strong>180x180 image of a crab</strong>. Once the image is uploaded, the file is stored in memory for further processing.</p>
+</section>
+<section id="block-3-opening-and-preprocessing-the-image">
+<h3>Block 3: Opening and Preprocessing the Image<a class="headerlink" href="#block-3-opening-and-preprocessing-the-image" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_path</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">uploaded</span><span class="p">))</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>  <span class="c1"># Convert to grayscale</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we open the uploaded image and convert it to grayscale using <code class="docutils literal notranslate"><span class="pre">.convert('L')</span></code>, where <code class="docutils literal notranslate"><span class="pre">'L'</span></code> means luminance or grayscale. The image is resized to <strong>180x180 pixels</strong> to ensure it’s the correct size for our convolution operation.</p>
+<ul class="simple">
+<li><p><strong>Recakk why we convert to grayscale:</strong> CNNs typically process grayscale or single-channel images more efficiently for basic operations like edge detection, as it simplifies the data (reducing from 3 RGB channels to 1).</p></li>
+<li><p><strong>Resizing</strong> ensures that the image fits within the expected dimensions of the neural network input.</p></li>
+</ul>
+</section>
+<section id="block-4-converting-the-image-to-a-pytorch-tensor">
+<h3>Block 4: Converting the Image to a PyTorch Tensor<a class="headerlink" href="#block-4-converting-the-image-to-a-pytorch-tensor" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">image_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">image_np</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This block first converts the image from a PIL format to a NumPy array using <code class="docutils literal notranslate"><span class="pre">np.array(image)</span></code>. Then, it transforms the NumPy array into a PyTorch tensor, which is the format used by PyTorch for processing data.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.unsqueeze(0)</span></code> is applied twice to add two dimensions: one for the <strong>batch size</strong> and one for the <strong>channel</strong> (in this case, just one channel for grayscale images).</p></li>
+<li><p><strong>Why tensors?</strong> Tensors are the data structure that PyTorch uses for computation, similar to arrays in NumPy but optimized for GPU operations.</p></li>
+</ul>
+</section>
+<section id="block-5-defining-the-edge-detection-filter">
+<h3>Block 5: Defining the Edge Detection Filter<a class="headerlink" href="#block-5-defining-the-edge-detection-filter" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">edge_filter</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">edge_filter</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<p>This block defines a <strong>convolutional layer</strong> (<code class="docutils literal notranslate"><span class="pre">Conv2d</span></code>) with a 3x3 kernel (filter) that will be used for detecting vertical edges.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">in_channels=1</span></code> and <code class="docutils literal notranslate"><span class="pre">out_channels=1</span></code>: This means we have a single input (grayscale image) and a single output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size=3</span></code>: Specifies that we are using a 3x3 filter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stride=1</span></code>: This means the filter moves one pixel at a time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">padding=1</span></code>: Adds zero-padding around the image to ensure the output size matches the input size.</p></li>
+</ul>
+<p>The filter defined here is a <strong>vertical edge detection filter</strong>, where the kernel looks like this:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1 \\
+1 &amp; 0 &amp; -1
+\end{bmatrix}
+\end{split}\]</div>
+<p>This filter emphasizes vertical edges by detecting differences in pixel intensities between adjacent vertical pixels.</p>
+</section>
+<section id="block-6-applying-the-filter">
+<h3>Block 6: Applying the Filter<a class="headerlink" href="#block-6-applying-the-filter" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">filtered_image_tensor</span> <span class="o">=</span> <span class="n">edge_filter</span><span class="p">(</span><span class="n">image_tensor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this block, we apply the convolution operation using the edge detection filter on the input image.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">torch.no_grad()</span></code></strong>: This disables gradient calculation, which is unnecessary here since we are only applying the filter and not training a model.</p></li>
+<li><p><strong>Why convolution?</strong> Convolution applies the filter to the image, highlighting specific features (in this case, vertical edges). It scans through the image and performs element-wise multiplication with the filter, followed by summing the results to produce the output.</p></li>
+</ul>
+</section>
+<section id="block-7-converting-the-filtered-image-for-display">
+<h3>Block 7: Converting the Filtered Image for Display<a class="headerlink" href="#block-7-converting-the-filtered-image-for-display" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_image_np</span> <span class="o">=</span> <span class="n">filtered_image_tensor</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="block-8-displaying-the-images">
+<h3>Block 8: Displaying the Images<a class="headerlink" href="#block-8-displaying-the-images" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Original Image</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_np</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original Image&quot;</span><span class="p">)</span>
+
+<span class="c1"># Filtered (Edge-detected) Image</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">filtered_image_np</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Filtered (Edge-detected) Image&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This final block uses Matplotlib to display the images side by side.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">plt.subplots(1,</span> <span class="pre">2,</span> <span class="pre">figsize=(10,</span> <span class="pre">5))</span></code></strong>: Creates two subplots, one for the original image and one for the edge-detected (filtered) image.</p></li>
+<li><p>The <strong>original image</strong> is shown in the first subplot, while the <strong>filtered image</strong> (after applying the edge detection filter) is displayed in the second.</p></li>
+</ul>
+<p>This visual comparison allows you to see how the convolutional filter modifies the image by highlighting vertical edges, reinforcing the math behind convolutions you’ve learned.</p>
+<p>Now lets put it all together, open the whole code snippet below in google colab and test out working in that environment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+
+<span class="c1"># Upload the image (make sure it&#39;s the provided 180x180 image of a crab for this exercise)</span>
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+
+<span class="c1"># Open the uploaded image</span>
+<span class="n">image_path</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">uploaded</span><span class="p">))</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>  <span class="c1"># Convert to grayscale</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">))</span>
+
+<span class="c1"># Convert image to numpy array and then to PyTorch tensor</span>
+<span class="n">image_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">image_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">image_np</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Define a simple edge detection filter</span>
+<span class="n">edge_filter</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">edge_filter</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>  
+
+<span class="c1"># Apply the filter (convolution)</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">filtered_image_tensor</span> <span class="o">=</span> <span class="n">edge_filter</span><span class="p">(</span><span class="n">image_tensor</span><span class="p">)</span>
+
+<span class="c1"># Convert the filtered image back to numpy for display</span>
+<span class="n">filtered_image_np</span> <span class="o">=</span> <span class="n">filtered_image_tensor</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="c1"># Plot the original and filtered images</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_np</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Original Image&quot;</span><span class="p">)</span>
+
+<span class="c1"># Filtered (Edge-detected) Image</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">filtered_image_np</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Filtered (Edge-detected) Image&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="video-example">
+<h2>Video Example<a class="headerlink" href="#video-example" title="Link to this heading">#</a></h2>
+<iframe width="720" height="405" src="https://www.youtube.com/embed/-ld8x68TYk8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p><strong>Animation 1: A 3x3 edge detection convolution filter slides over a 9x9 pixel subset of an example crab image, detecting edges and transforming pixel values in real-time. Credit: A. Carter UW</strong></p>
+</section>
+<section id="cnns-and-multiple-layers">
+<h2>CNNs and Multiple Layers<a class="headerlink" href="#cnns-and-multiple-layers" title="Link to this heading">#</a></h2>
+<p>The edge detector example demonstrates how a simple convolutional filter can detect vertical edges in an image. However, <strong>Convolutional Neural Networks (CNNs)</strong> go far beyond using just one filter or one layer. CNNs are composed of many layers, each designed to detect increasingly complex features of an image. Let’s explore how these layers function together to make CNNs so powerful.</p>
+<section id="how-cnns-use-multiple-layers">
+<h3>How CNNs Use Multiple Layers<a class="headerlink" href="#how-cnns-use-multiple-layers" title="Link to this heading">#</a></h3>
+<p>CNNs are made up of a sequence of layers, each of which transforms the input image in a different way. The first few layers typically detect <strong>simple features</strong> like edges, lines, and corners, similar to the edge detection filter we just used. As the network progresses deeper into subsequent layers, it begins to detect more <strong>complex patterns</strong> such as shapes, textures, and entire objects.</p>
+<ul class="simple">
+<li><p><strong>Early Layers</strong>: Focus on basic features like edges and corners. These are the low-level features that are present in almost every image.</p></li>
+<li><p><strong>Middle Layers</strong>: Detect more complex structures, like patterns, textures, or object parts (e.g., fins of a fish or the body of a coral).</p></li>
+<li><p><strong>Deeper Layers</strong>: Recognize entire objects and relationships between objects. In marine imagery, these layers might detect full fish species, coral formations, or even patterns of animal behavior.</p></li>
+</ul>
+<p>This hierarchical approach allows CNNs to build a progressively more sophisticated understanding of the input data.</p>
+</section>
+<section id="preview-of-next-section-how-weights-change-during-training">
+<h3>Preview of next section : how Weights Change During Training<a class="headerlink" href="#preview-of-next-section-how-weights-change-during-training" title="Link to this heading">#</a></h3>
+<p>The power of CNNs comes from their ability to <strong>learn</strong> and <strong>adapt</strong> their filters (or weights) during training. Each filter in a CNN has associated <strong>weights</strong>, which are numbers that control how the filter interacts with the input image. When a CNN is trained on a dataset, these weights are updated over many <strong>epochs</strong> (iterations over the dataset).</p>
+<ol class="arabic simple">
+<li><p><strong>Initial Weights</strong>: At the beginning of training, the weights in each layer are typically initialized randomly. These random weights might detect patterns, but they don’t yet represent useful features for the task.</p></li>
+<li><p><strong>Training and Backpropagation</strong>: During training, the CNN processes the input image and makes predictions. The difference between the prediction and the true label (known as the <strong>loss</strong>) is calculated. Using an optimization process called <strong>backpropagation</strong>, the CNN updates the weights to minimize this loss.</p></li>
+<li><p><strong>Epochs and Weight Updates</strong>: Training is repeated over many <strong>epochs</strong>. An epoch refers to a full cycle through the training dataset. After each epoch, the weights are slightly adjusted based on the feedback from the loss function. Over time, the CNN learns to modify its weights to better detect the relevant features in the image.</p>
+<ul class="simple">
+<li><p><strong>Early Epochs</strong>: The weights are still far from optimal. The CNN is learning basic patterns, and the filters may be detecting random noise or unrelated features.</p></li>
+<li><p><strong>Later Epochs</strong>: As training progresses, the weights in each layer become specialized. Filters in the early layers may focus on detecting edges, while filters in deeper layers become tuned to recognizing specific objects, like marine species or coral structures.</p></li>
+</ul>
+</li>
+<li><p><strong>Convergence</strong>: After sufficient epochs, the weights reach a point where the CNN can accurately classify images in the dataset. At this point, the network has effectively learned how to transform raw pixel data into meaningful representations of objects.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="PreMIWSurvey.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Survey Results</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-cnn">What is a CNN?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-are-cnns-ubiquitous-in-marine-imagery">Why are CNNs Ubiquitous in Marine Imagery?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#annotations-in-cnns-bounding-boxes">Annotations in CNNs: Bounding Boxes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundations-of-cnns">Mathematical Foundations of CNNs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#images-as-data-and-why-grayscale-is-used">Images as Data and Why Grayscale is Used</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-convert-to-grayscale">Why Convert to Grayscale?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-machines-see-images">How Machines See Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutions">Convolutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-formula">Convolution Formula</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-kernels">Filters / Kernels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stride-and-padding">Stride and Padding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pooling">Pooling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-hierarchical-features">Building Hierarchical Features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code-in-pytorch">Example Code in PyTorch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-move-onto-a-more-complex-example">Let’s Move onto a More Complex Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breakdown-of-the-code-blocks">Breakdown of the Code Blocks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-1-importing-libraries">Block 1: Importing Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-2-uploading-the-image">Block 2: Uploading the Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-3-opening-and-preprocessing-the-image">Block 3: Opening and Preprocessing the Image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-4-converting-the-image-to-a-pytorch-tensor">Block 4: Converting the Image to a PyTorch Tensor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-5-defining-the-edge-detection-filter">Block 5: Defining the Edge Detection Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-6-applying-the-filter">Block 6: Applying the Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-7-converting-the-filtered-image-for-display">Block 7: Converting the Filtered Image for Display</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#block-8-displaying-the-images">Block 8: Displaying the Images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#video-example">Video Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnns-and-multiple-layers">CNNs and Multiple Layers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-cnns-use-multiple-layers">How CNNs Use Multiple Layers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preview-of-next-section-how-weights-change-during-training">Preview of next section : how Weights Change During Training</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ada Carter & Katie Bigham
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

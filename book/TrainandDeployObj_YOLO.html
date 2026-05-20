@@ -1,0 +1,915 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>15. Training and Deploying Object Detection with YOLO &#8212; Computer Vision for Marine Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/TrainandDeployObj_YOLO';</script>
+    <link rel="canonical" href="https://atticus-carter.github.io/cv/book/TrainandDeployObj_YOLO.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="16. Ice Seal Classification using YOLOv11" href="Classification_YOLO.html" />
+    <link rel="prev" title="14. Training YOLO Models: A Guide to Understanding Tasks and Modes" href="Introduction_YOLO.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Computer Vision for Marine Applications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Computer Vision for Marine Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Landing.html">Welcome to Computer Vision Across the Marine Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tools.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License_Page.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Marine Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction_MarineImaging.html">1. Marine Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Imagery.html">2. Imagery Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanImageTypes.html">3. Ocean Image Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_AI.html">4. Artificial Intelligence in Marine Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transfer_Learning_Marine.html">5. Transfer Learning for Marine Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model_Interpretability_Marine.html">6. Model Interpretability for Marine Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Introduction to Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_CV.html">7. Image Annotation for Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_Man.html">8. Manual Image Annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ImShow.html">9. Exploring Image Data With ImShow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">10. Image Manipulation in Python with PIL and OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">11. Creating and Augmenting Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">12. Understanding CV Metrics and Graphs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Computer Vision Development</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">13. Image Classification with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">14. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Training and Deploying Object Detection with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">16. Ice Seal Classification using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanCVLocalizing_YOLO.html">17. Localizing the OceanCV FirstPass Model to a New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keypoint_YOLO.html">18. Keypoint Detection With YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstanceSegmentation_YOLO.html">19. Instance Segmentation with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">23. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">24. Writing a Model Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">25. Creating Streamlit Applications for YOLOv11 Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreMIWSurvey.html">Survey Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_CNN.html">The Math Behind Convolutional Neural Networks (CNNs)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/atticus-carter/cv/master?urlpath=tree/book/TrainandDeployObj_YOLO.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/atticus-carter/cv/blob/master/book/TrainandDeployObj_YOLO.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/edit/main/book/TrainandDeployObj_YOLO.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/issues/new?title=Issue%20on%20page%20%2Fbook/TrainandDeployObj_YOLO.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/TrainandDeployObj_YOLO.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Training and Deploying Object Detection with YOLO</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">15.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">15.2. Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-the-dataset">15.3. Downloading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">15.4. Preparing the Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">15.5. Loading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tensorboard-before-training">15.6. Initializing TensorBoard Before Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-yolov11-model">15.7. Training the YOLOv11 Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loss">15.8. Loss</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-loss">15.8.1. Box Loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-loss">15.8.2. Class Loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-focal-loss-dfl">15.8.3. Distribution Focal Loss (DFL)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting">15.9. Fitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting">15.9.1. Overfitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting">15.9.2. Underfitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">15.9.3. Evaluating the Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">15.10. Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-threshold-conf">15.10.1. Confidence Threshold (conf)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intersection-over-union-iou">15.10.2. Intersection over Union (IoU)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflecting-on-results">15.10.3. Reflecting on Results</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="training-and-deploying-object-detection-with-yolo">
+<h1><span class="section-number">15. </span>Training and Deploying Object Detection with YOLO<a class="headerlink" href="#training-and-deploying-object-detection-with-yolo" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">15.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this lesson, we will train an Object Detection model using YOLOv11. You’ll be able to choose specific augmentations, batch size, resolution, and other parameters based on your system’s capabilities and runtime. The dataset is already provided in YOLO format and will be used to train and evaluate the model.</p>
+</section>
+<section id="learning-objectives">
+<h2><span class="section-number">15.2. </span>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p>Understand the YOLO format and how to train a custom object detection model using YOLOv11.</p></li>
+<li><p>Experiment with different augmentations and hyperparameters for object detection.</p></li>
+<li><p>Evaluate the model’s performance and visualize the results.</p></li>
+</ul>
+</section>
+<section id="downloading-the-dataset">
+<h2><span class="section-number">15.3. </span>Downloading the Dataset<a class="headerlink" href="#downloading-the-dataset" title="Link to this heading">#</a></h2>
+<p>The dataset for this lesson is already formatted in YOLO format. You can load it directly for training and evaluation. Ensure you have the dataset uploaded before proceeding.</p>
+</section>
+<section id="preparing-the-environment">
+<h2><span class="section-number">15.4. </span>Preparing the Environment<a class="headerlink" href="#preparing-the-environment" title="Link to this heading">#</a></h2>
+<p>Let’s first install the required libraries and set up the environment to train our YOLOv11 model. <strong>Crucially</strong> Make sure that you are in a GPU runtime by running the cell below. It should output the GPU currently connected to.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!nvidia-smi
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Install the required dependencies
+!pip install ultralytics
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Import required libraries
+import os
+from ultralytics import YOLO
+import json
+import zipfile
+import os
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loading-the-dataset">
+<h2><span class="section-number">15.5. </span>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
+<p>To download the dataset used in this tutorial, visit <a class="reference external" href="https://tinyurl.com/462cplastic">this link</a>. Make sure to select “YOLOV11” as the format and choose the zip download option. Once the zip file is downloaded to your computer, upload it to your Colab runtime environment. You can do this by clicking the folder icon on the left sidebar and uploading the file there.</p>
+<p>If you are using a different dataset or format, ensure it is structured in the YOLO format. For this tutorial, we assume that the dataset is organized into <code class="docutils literal notranslate"><span class="pre">train/</span></code>, <code class="docutils literal notranslate"><span class="pre">val/</span></code>, and <code class="docutils literal notranslate"><span class="pre">test/</span></code> directories.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Set paths to the dataset
+# Replace with the path to your zip folder, which can be found by rightclicking
+# on it in the file browser.
+
+zip_file_path = &#39;/content/ClassPlastics.v1i.yolov11.zip&#39;
+
+# Unzip the file
+with zipfile.ZipFile(zip_file_path, &#39;r&#39;) as zip_ref:
+    zip_ref.extractall(&#39;/content/Dataset&#39;)
+
+# Set the dataset path
+dataset_path = &#39;/content/Dataset&#39;
+
+# Verify the dataset path
+print(f&quot;Dataset path is set to: {dataset_path}&quot;)
+print(f&quot;Files in dataset path: {os.listdir(dataset_path)}&quot;)
+
+# Set train and val paths
+train_path = os.path.join(dataset_path, &#39;train/&#39;)
+val_path = os.path.join(dataset_path, &#39;val/&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="initializing-tensorboard-before-training">
+<h2><span class="section-number">15.6. </span>Initializing TensorBoard Before Training<a class="headerlink" href="#initializing-tensorboard-before-training" title="Link to this heading">#</a></h2>
+<p>TensorBoard is a powerful visualization tool that provides real-time insights into your model’s training process. By initializing TensorBoard before training, you can monitor key metrics such as loss, accuracy, and learning rates, allowing for timely adjustments and improved model performance. This proactive monitoring helps in identifying issues like overfitting or underfitting early in the training process. Be sure to click the refresh button in the top right of the Tensorboard often!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%load_ext tensorboard
+%tensorboard --logdir /content/runs/detect/train
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-the-yolov11-model">
+<h2><span class="section-number">15.7. </span>Training the YOLOv11 Model<a class="headerlink" href="#training-the-yolov11-model" title="Link to this heading">#</a></h2>
+<p>Key Training Parameters: imgsz, batch, and epochs</p>
+<p>imgsz (Image Size): This parameter defines the target size to which all training images are resized. A standard value is 640 pixels, but adjusting this can impact model accuracy and computational load. Larger sizes may improve accuracy but require more resources, while smaller sizes can speed up training at the cost of precision.</p>
+<p>batch (Batch Size): This determines the number of images processed simultaneously during training. Setting an appropriate batch size is essential; too large can lead to memory issues, while too small may result in unstable training. YOLOv11 offers flexibility, allowing you to set a specific integer (e.g., batch=16), use auto mode for 60% GPU memory utilization (batch=-1), or specify a utilization fraction (batch=0.70).</p>
+<p>epochs: This defines the number of complete passes through the training dataset. Choosing the right number of epochs is vital; too few may lead to underfitting, while too many can cause overfitting. Monitoring performance metrics during training can help determine the optimal number of epochs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from ultralytics import YOLO
+
+# Load the YOLOv11 model (pretrained on COCO dataset)
+model = YOLO(&quot;yolo11n.pt&quot;)
+
+# Path to the dataset configuration YAML file
+dataset_config = &#39;/content/Dataset/data.yaml&#39;  # Path to the YAML file
+
+# Train the model
+results = model.train(
+    data=dataset_config,  # Path to the YAML file
+    epochs=100,
+    batch=64,  # Set a valid batch size (adjust as needed)
+    imgsz=640,  # Image size for training
+    plots=True,
+    patience=50
+)
+
+# Optionally, you can print the results after training to inspect
+print(results)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loss">
+<h2><span class="section-number">15.8. </span>Loss<a class="headerlink" href="#loss" title="Link to this heading">#</a></h2>
+<p>As you are waiting for your model to train, take note of the the loss values. In YOLOv11, the loss function comprises three primary components: box loss, class loss, and Distribution Focal Loss (DFL). Each plays a distinct role in training the model effectively.</p>
+<section id="box-loss">
+<h3><span class="section-number">15.8.1. </span>Box Loss<a class="headerlink" href="#box-loss" title="Link to this heading">#</a></h3>
+<p>Box loss is responsible for optimizing the localization accuracy of predicted bounding boxes. It measures the discrepancy between the predicted boxes and the ground truth annotations. YOLOv11 employs the Complete Intersection over Union (CIoU) loss for this purpose, which considers:</p>
+<p>Overlap Area: The intersection over union between the predicted and ground truth boxes.
+Distance Between Centers: How far apart the centers of the two boxes are.
+Aspect Ratio Consistency: Differences in the width and height ratios of the boxes.
+By integrating these factors, CIoU provides a comprehensive measure for bounding box regression, leading to more precise localization.</p>
+</section>
+<section id="class-loss">
+<h3><span class="section-number">15.8.2. </span>Class Loss<a class="headerlink" href="#class-loss" title="Link to this heading">#</a></h3>
+<p>Class loss ensures that the model accurately classifies detected objects into their respective categories. It is typically calculated using Cross-Entropy Loss, which evaluates the difference between the predicted class probabilities and the actual class labels. Minimizing this loss helps the model improve its classification performance.</p>
+</section>
+<section id="distribution-focal-loss-dfl">
+<h3><span class="section-number">15.8.3. </span>Distribution Focal Loss (DFL)<a class="headerlink" href="#distribution-focal-loss-dfl" title="Link to this heading">#</a></h3>
+<p>DFL is designed to enhance the model’s ability to distinguish between objects that are similar or challenging to differentiate. It focuses on refining the bounding box predictions by emphasizing harder-to-classify examples, improving the model’s discriminative power. This is particularly beneficial in scenarios with class imbalance or when dealing with small or ambiguous objects.</p>
+<p>Each of these loss components contributes to the overall training objective by addressing different aspects of the object detection task: localization, classification, and the handling of difficult examples. Balancing these losses appropriately is crucial for achieving optimal model performance.</p>
+</section>
+</section>
+<section id="fitting">
+<h2><span class="section-number">15.9. </span>Fitting<a class="headerlink" href="#fitting" title="Link to this heading">#</a></h2>
+<p>Monitoring loss metrics is crucial for assessing model performance and identifying signs of overfitting or underfitting. In YOLOv11, consistently decreasing box loss, class loss, and Distribution Focal Loss (DFL) during training indicates effective learning. However, if these loss metrics stagnate—showing no significant improvement over successive epochs—it may suggest that the model has reached its optimal capacity or is encountering issues such as overfitting or underfitting.</p>
+<section id="overfitting">
+<h3><span class="section-number">15.9.1. </span>Overfitting<a class="headerlink" href="#overfitting" title="Link to this heading">#</a></h3>
+<p>Overfitting occurs when the model performs well on training data but poorly on validation data, indicating it has memorized the training examples rather than generalizing from them. This is often observed when training loss continues to decrease while validation loss starts to increase. To mitigate overfitting, techniques such as early stopping can be employed. In YOLOv11, you can set the patience parameter in your training configuration to specify the number of epochs to wait for an improvement in validation metrics before stopping training. For example, setting patience=5 will halt training if there’s no improvement in validation metrics for five consecutive epochs.</p>
+</section>
+<section id="underfitting">
+<h3><span class="section-number">15.9.2. </span>Underfitting<a class="headerlink" href="#underfitting" title="Link to this heading">#</a></h3>
+<p>Underfitting is characterized by poor performance on both training and validation datasets, suggesting the model is too simplistic to capture the underlying patterns in the data. This can be identified when both training and validation losses are high and show minimal improvement. To address underfitting, consider increasing the model’s complexity, providing more training data, or adjusting hyperparameters to better capture the data’s intricacies.</p>
+<p>By closely monitoring these loss metrics and implementing strategies like early stopping with an appropriate patience parameter, you can ensure efficient training, prevent overfitting, and achieve optimal model performance.</p>
+</section>
+<section id="evaluating-the-model">
+<h3><span class="section-number">15.9.3. </span>Evaluating the Model<a class="headerlink" href="#evaluating-the-model" title="Link to this heading">#</a></h3>
+<p>After training, we will evaluate the model performance using validation data and calculated metrics such as mean Average Precision (mAP). YOLOv11 will perform evaluation automatically after running its training mode, however if you stopped early or have other reasons to run validation after a model is trained, you can do so using the val mode</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ultralytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YOLO</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="s1">&#39;/content/runs/detect/train/weights/best.pt&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="n">test_images_dir</span> <span class="o">=</span> <span class="s1">&#39;/content/Dataset/test/images&#39;</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">test_images_dir</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_txt</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">results</span>
+
+</pre></div>
+</div>
+<p>For now, we will assume that your model was trained to its set number of epochs, so we wil be displaying the graphs directly from its train directory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from IPython.display import Image, display
+import os
+
+# Set the base directory
+base_dir = &quot;/content/runs/detect/train/&quot;
+
+# List of filenames to display
+filenames = [
+    &quot;labels.jpg&quot;,
+    &quot;F1_curve.png&quot;,
+    &quot;PR_curve.png&quot;,
+    &quot;P_curve.png&quot;,
+    &quot;R_curve.png&quot;,
+    &quot;confusion_matrix.png&quot;,
+    &quot;confusion_matrix_normalized.png&quot;
+]
+
+# Display each image
+for filename in filenames:
+    image_path = os.path.join(base_dir, filename)
+    display(Image(image_path))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="inference">
+<h2><span class="section-number">15.10. </span>Inference<a class="headerlink" href="#inference" title="Link to this heading">#</a></h2>
+<p>After training your model and evaluating its performance, the next step is to run inference on a video to assess its real-world applicability. Within this code cell, you can adjust two inference parameters: confidence threshold (conf) and Intersection over Union threshold (iou).</p>
+<section id="confidence-threshold-conf">
+<h3><span class="section-number">15.10.1. </span>Confidence Threshold (conf)<a class="headerlink" href="#confidence-threshold-conf" title="Link to this heading">#</a></h3>
+<p>(default: 0.25) This parameter sets the minimum confidence level for detections. Objects detected with a confidence score below this threshold will be disregarded. Adjusting this value can help reduce false positives.</p>
+</section>
+<section id="intersection-over-union-iou">
+<h3><span class="section-number">15.10.2. </span>Intersection over Union (IoU)<a class="headerlink" href="#intersection-over-union-iou" title="Link to this heading">#</a></h3>
+<p>iou (default: 0.7): This parameter defines the IoU threshold for Non-Maximum Suppression (NMS). Lower values result in fewer detections by eliminating overlapping boxes, which is useful for reducing duplicates.</p>
+<hr class="docutils" />
+<p>Use the following code block to download a video to test your new model on:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!wget https://huggingface.co/datasets/OceanCV/PlasticTank_Video/resolve/main/tankvid.mp4?download=true -O tankvid.mp4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import cv2
+from ultralytics import YOLO
+
+model_path = &#39;/content/runs/detect/train/weights/best.pt&#39;
+model = YOLO(model_path)
+
+video_path = &#39;tankvid.mp4&#39;
+
+results = model.predict(source=video_path, conf=0.25, iou=0.7)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reflecting-on-results">
+<h3><span class="section-number">15.10.3. </span>Reflecting on Results<a class="headerlink" href="#reflecting-on-results" title="Link to this heading">#</a></h3>
+<p>Now that you’ve trained and evaluated your model, reflect on the following questions:</p>
+<ul class="simple">
+<li><p>How might the parameters affect the model’s performance and how would you design an experiment to test the best params for your usecase?</p></li>
+<li><p>Were there any significant differences in the val metrics for different classes, why?</p></li>
+<li><p>What visual observations can you make from the test results?</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Introduction_YOLO.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Training YOLO Models: A Guide to Understanding Tasks and Modes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Classification_YOLO.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Ice Seal Classification using YOLOv11</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">15.1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">15.2. Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-the-dataset">15.3. Downloading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-environment">15.4. Preparing the Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">15.5. Loading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-tensorboard-before-training">15.6. Initializing TensorBoard Before Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-yolov11-model">15.7. Training the YOLOv11 Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loss">15.8. Loss</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-loss">15.8.1. Box Loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-loss">15.8.2. Class Loss</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-focal-loss-dfl">15.8.3. Distribution Focal Loss (DFL)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting">15.9. Fitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting">15.9.1. Overfitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting">15.9.2. Underfitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">15.9.3. Evaluating the Model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference">15.10. Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-threshold-conf">15.10.1. Confidence Threshold (conf)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intersection-over-union-iou">15.10.2. Intersection over Union (IoU)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reflecting-on-results">15.10.3. Reflecting on Results</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ada Carter & Katie Bigham
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

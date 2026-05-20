@@ -1,0 +1,706 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Marine Imaging &#8212; Computer Vision for Marine Applications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/Introduction_MarineImaging';</script>
+    <link rel="canonical" href="https://atticus-carter.github.io/cv/book/Introduction_MarineImaging.html" />
+    <link rel="icon" href="../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Imagery Fundamentals" href="Intro_Imagery.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="imageData.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Computer Vision for Marine Applications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Computer Vision for Marine Applications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Landing.html">Welcome to Computer Vision Across the Marine Sciences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tools.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="License_Page.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 1 - Introduction to Marine Imaging</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Marine Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Intro_Imagery.html">2. Imagery Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanImageTypes.html">3. Ocean Image Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_AI.html">4. Artificial Intelligence in Marine Science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Transfer_Learning_Marine.html">5. Transfer Learning for Marine Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model_Interpretability_Marine.html">6. Model Interpretability for Marine Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 2 - Introduction to Computer Vision</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_CV.html">7. Image Annotation for Computer Vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Image_Annotation_Man.html">8. Manual Image Annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ImShow.html">9. Exploring Image Data With ImShow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Manual.html">10. Image Manipulation in Python with PIL and OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Augmentation_Albumentation.html">11. Creating and Augmenting Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_Metrics.html">12. Understanding CV Metrics and Graphs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 3 - Computer Vision Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Classification_Keras.html">13. Image Classification with Keras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_YOLO.html">14. Training YOLO Models: A Guide to Understanding Tasks and Modes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TrainandDeployObj_YOLO.html">15. Training and Deploying Object Detection with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification_YOLO.html">16. Ice Seal Classification using YOLOv11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OceanCVLocalizing_YOLO.html">17. Localizing the OceanCV FirstPass Model to a New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Keypoint_YOLO.html">18. Keypoint Detection With YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InstanceSegmentation_YOLO.html">19. Instance Segmentation with YOLO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ClusterSegmentation_Kmeans.html">20. K-means Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SRGAN_Tensorflow.html">21. Image Super-Resolution and Enhancement with SRGAN in TensorFlow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapter 4 - Synthesis Project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Final_DatasetSelection.html">22. Finding Datasets for Computer Vision Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_HFOrganization.html">23. Joining the OceanCV Hugging Face Organization and Uploading Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_ModelCard.html">24. Writing a Model Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Final_StreamlitApps.html">25. Creating Streamlit Applications for YOLOv11 Models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PreMIWSurvey.html">Survey Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction_CNN.html">The Math Behind Convolutional Neural Networks (CNNs)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/edit/main/book/Introduction_MarineImaging.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/atticus-carter/cv/issues/new?title=Issue%20on%20page%20%2Fbook/Introduction_MarineImaging.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/book/Introduction_MarineImaging.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Marine Imaging</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">1.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">1.1.1. Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1.2. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-studies-that-use-marine-images">1.3. Types of studies that use marine images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecological-surveys">1.3.1. Ecological Surveys</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#habitat-mapping">1.3.2. Habitat Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#animal-behavior-studies">1.3.3. Animal Behavior Studies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geologic-and-physical-oceanography">1.3.4. Geologic and Physical Oceanography</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pollution-and-marine-litter-studies">1.3.5. Pollution and Marine Litter Studies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-for-imaging-in-the-marine-environment">1.4. Challenges for imaging in the marine environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-challenges">1.4.1. Optical Challenges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-challenges">1.4.2. Environmental Challenges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-to-imaging-challenges">1.5. Solutions to Imaging Challenges</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-data-principles-in-marine-imaging">1.6. FAIR Data Principles in Marine Imaging</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="marine-imaging">
+<h1><span class="section-number">1. </span>Marine Imaging<a class="headerlink" href="#marine-imaging" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">1.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This section provides a non-comprehensive review of the field of marine imaging. We will explore the history of marine imagery, the types of research that utilize imagery in marine environments, and some challenges inherent to using imaging techniques underwater.</p>
+<section id="learning-objectives">
+<h3><span class="section-number">1.1.1. </span>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h3>
+<p>By the end of this section, you will:</p>
+<ul class="simple">
+<li><p>Understand the historical development of marine imaging techniques and their scientific relevance.</p></li>
+<li><p>Identify various types of marine research that rely on imagery, including ecological surveys, habitat mapping, and behavior studies.</p></li>
+<li><p>Recognize the primary challenges associated with capturing and analyzing marine imagery, including environmental and technical hurdles.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="introduction">
+<h2><span class="section-number">1.2. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The use of imagery in marine science has a long tradition, both for scientific inquiry and for engaging the public in the wonders of the ocean. Underwater photography began as early as the mid-19th century and has evolved into one of the most critical tools for studying the ocean’s depths. The non-destructive nature of imaging makes it invaluable for visualizing marine flora, fauna, geologic formations, human-made infrastructure, and even marine litter across vast spatial scales. As shown by <span class="bibtex-citation" id="id1">[<a class="reference internal" href="bibliography.html#id2" title="Donna M Kocak and Frank M Caimi. The current art of underwater imaging–with a glimpse of the past and vision of the future. Marine Technology Society Journal, 39(3):5–26, 2005.">Kocak and Caimi, 2005</a>]</span>, advancements in underwater imaging technology have significantly improved our ability to document anthropogenic structures such as shipwrecks and submerged infrastructure, as well as track and quantify marine litter. These developments not only enhance scientific research but also support conservation efforts by providing detailed visual evidence of human impact on marine environments.</p>
+<p>The first documented underwater photographs were taken in 1856 using a pole-mounted system <span class="bibtex-citation" id="id2">[<a class="reference internal" href="bibliography.html#id3" title="N. Baker. William thompson – the world's first underwater photographer. Historical Diving Times, 1997.">Baker, 1997</a>]</span>. These early images laid the foundation for modern marine imaging, which now encompasses an array of advanced platforms equipped with high-resolution cameras capable of capturing data in various formats, from still images to video and hyperspectral data. Technological advancements in cameras, lighting, and data storage have enabled researchers to gather terabytes of imagery data from environments ranging from shallow coastal waters to the deep sea (see <a class="reference internal" href="#book/OceanImageTypes.md"><span class="xref myst">Ocean Image Data</span></a>.)</p>
+<p>As imaging technology continues to evolve, the volume of imagery data has grown exponentially. This creates both opportunities and challenges. On the one hand, researchers can access unprecedented visual data to study marine ecosystems. On the other hand, processing and analyzing such vast datasets is a significant bottleneck. Currently, manual annotation by trained specialists is the primary method for extracting meaningful data from images. However, as noted by <span class="bibtex-citation" id="id3">[<a class="reference internal" href="bibliography.html#id4" title="Timm Schoening, Jonas Osterloff, and Tim W. Nattkemper. Recomia-recommendations for marine image annotation: lessons learned and future directions. Frontiers in Marine Science, 2016. doi:10.3389/fmars.2016.00059.">Schoening <em>et al.</em>, 2016</a>]</span>, this traditional approach is becoming increasingly impractical due to the sheer scale of modern image collections.</p>
+</section>
+<hr class="docutils" />
+<section id="types-of-studies-that-use-marine-images">
+<h2><span class="section-number">1.3. </span>Types of studies that use marine images<a class="headerlink" href="#types-of-studies-that-use-marine-images" title="Link to this heading">#</a></h2>
+<p>Marine imagery is utilized across a wide range of scientific disciplines, either as a primary data source or in combination with other data types. According to <span class="bibtex-citation" id="id4">[<a class="reference internal" href="bibliography.html#id2" title="Donna M Kocak and Frank M Caimi. The current art of underwater imaging–with a glimpse of the past and vision of the future. Marine Technology Society Journal, 39(3):5–26, 2005.">Kocak and Caimi, 2005</a>]</span>, different imaging technologies serve specific purposes in marine research, from high-resolution cameras used for benthic surveys to multi-spectral and hyperspectral imaging systems that capture detailed environmental data. Kocak and Caimi categorize these technologies based on their applications, such as habitat mapping, behavioral studies, and pollution monitoring, reviewing the versatility and evolving capabilities of underwater imaging systems in addressing diverse scientific questions. These studies vary in scope from exploratory surveys to hypothesis-driven research, and they can encompass both spatial and temporal analyses. Below are some of the key types of studies that rely on marine imagery:</p>
+<section id="ecological-surveys">
+<h3><span class="section-number">1.3.1. </span>Ecological Surveys<a class="headerlink" href="#ecological-surveys" title="Link to this heading">#</a></h3>
+<p>Marine imagery is widely used in ecological surveys to assess the distribution, abundance, and diversity of marine organisms. Images can capture snapshots of marine life in its natural habitat, providing valuable data for biodiversity assessments and monitoring changes in marine ecosystems over time. For example, time-series image data collected from fixed cameras on the seafloor can reveal seasonal patterns and long-term trends in benthic communities. Traditionally, this process is carried out through manual annotations by humans, a method that remains in use among some scientists. However, the advent of automated identification systems has started to transform this practice by streamlining workflows and improving the accuracy of data extraction. As shown by <span class="bibtex-citation" id="id5">[<a class="reference internal" href="bibliography.html#id5" title="Nils Piechaud, Christopher Hunt, Phil F Culverhouse, Nicola L Foster, and Kerry L Howell. Automated identification of benthic epifauna with computer vision. Marine Ecology Progress Series, 615:15–30, 2019.">Piechaud <em>et al.</em>, 2019</a>]</span>, advancements in computer vision have made it possible to automate the identification of benthic epifauna, significantly reducing the time and effort required for manual annotation while increasing the accuracy and consistency of species identification.</p>
+</section>
+<section id="habitat-mapping">
+<h3><span class="section-number">1.3.2. </span>Habitat Mapping<a class="headerlink" href="#habitat-mapping" title="Link to this heading">#</a></h3>
+<p>Imagery is essential for mapping marine habitats, particularly in areas that are difficult to access using traditional sampling methods. As discussed in <span class="bibtex-citation" id="id6">[<a class="reference internal" href="bibliography.html#id6" title="Daniele Ventura, Andrea Bonifazi, Maria Flavia Gravina, Andrea Belluscio, and Giandomenico Ardizzone. Mapping and classification of ecologically sensitive marine habitats using unmanned aerial vehicle (uav) imagery and object-based image analysis (obia). Remote Sensing, 10(9):1331, 2018.">Ventura <em>et al.</em>, 2018</a>]</span>, the use of Unmanned Aerial Vehicles (UAVs) combined with Object-Based Image Analysis (OBIA) has proven highly effective in mapping ecologically sensitive marine habitats. Ventura et al. (2018) demonstrated that UAVs equipped with high-resolution cameras can provide detailed imagery of coastal environments, including seagrass meadows and biogenic reefs, at a fraction of the cost and effort required by traditional methods. Their study highlighted the capability of OBIA to classify habitat types based on texture, color, and spatial relationships within the images, allowing for accurate and efficient habitat mapping. The research further showed that this approach could identify changes in habitat structure over time, making it a valuable tool for monitoring and conservation efforts. By utilizing UAV imagery and advanced analytical techniques, researchers can achieve high spatial accuracy in habitat classification, even in areas where fieldwork is challenging or impractical. Similarly, AUVs and ROVs can produce high-resolution images that can be used to create detailed maps of interesting seafloor features as demonstrated by <span class="bibtex-citation" id="id7">[<a class="reference internal" href="bibliography.html#id8" title="Aaron Marburg and Katie Bigham. Deep learning for benthic fauna identification. OCEANS 2016 MTS/IEEE Monterey, pages 1-5, 2016. doi:10.1109/OCEANS.2016.7761146.">Marburg and Bigham, 2016</a>]</span>. Creating large-area photomosaics using high-resolution imagery allows researchers to map expansive regions of the seafloor accurately. These mosaics can then be imported into Geographic Information Systems (GIS) for further spatial analysis and visualization. By aligning and stitching individual images into coherent photomosaics, researchers can achieve a continuous view of the underwater environment, essential for identifying habitat boundaries and assessing spatial distribution of benthic fauna.</p>
+</section>
+<section id="animal-behavior-studies">
+<h3><span class="section-number">1.3.3. </span>Animal Behavior Studies<a class="headerlink" href="#animal-behavior-studies" title="Link to this heading">#</a></h3>
+<p>Marine imagery allows researchers to observe and document animal behavior in situ without disturbing the organisms. Video footage from remotely operated vehicles (ROVs) or stationary cameras can capture feeding behaviors, mating rituals, predator-prey interactions, and other activities that provide insights into the lives of marine species. As shown by <span class="bibtex-citation" id="id8">[<a class="reference internal" href="bibliography.html#id9" title="John A Burns, Kaitlyn P Becker, David Casagrande, Joost Daniels, Paul Roberts, Eric Orenstein, Daniel M Vogt, Zhi Ern Teoh, Ryan Wood, Alexander H Yin, and others. An in situ digital synthesis strategy for the discovery and description of ocean life. Science Advances, 10(3):eadj4960, 2024.">Burns <em>et al.</em>, 2024</a>]</span>, recent advancements in in situ digital synthesis strategies have greatly enhanced the accuracy and depth of behavioral studies in the marine environment. Burns et al. introduced a multi-faceted approach that integrates real-time video recording, 3D laser imaging, and genetic analysis to document intricate behaviors of fragile mid-water fauna like gelatinous zooplankton.</p>
+<p>Their study showcases how high-resolution imaging systems can capture detailed behavioral interactions, such as predation and reproduction, in situ, preserving the organisms’ natural responses. This approach is particularly beneficial for species that are difficult to study in laboratory settings due to their sensitivity to handling and environmental changes. The incorporation of automated tools for behavioral tracking has also improved the efficiency of analyzing large datasets, allowing for more comprehensive behavioral assessments across different temporal and spatial scales.</p>
+<p>Furthermore, Burns et al. demonstrated the use of imaging platforms like the RAD-2 system to hold specimens in their natural state, minimizing stress-induced behavioral changes during capture. This breakthrough ensures that researchers can observe authentic behaviors without the issues commonly introduced by traditional collection methods. Such technologies represent a significant step forward in marine behavioral studies, providing insights into the dynamic interactions of marine life and contributing to broader ecological understanding.</p>
+</section>
+<section id="geologic-and-physical-oceanography">
+<h3><span class="section-number">1.3.4. </span>Geologic and Physical Oceanography<a class="headerlink" href="#geologic-and-physical-oceanography" title="Link to this heading">#</a></h3>
+<p>Marine imagery plays a crucial role in both geologic and physical oceanography by enabling researchers to map underwater features and monitor dynamic ocean processes like sediment transport and surface currents. High-resolution images from satellites and underwater vehicles provide insights into seafloor structures, volcanic activity, and ocean circulation patterns, informing everything from current movement to the presence or absence of geologic activity.</p>
+<p>A notable method used in physical oceanography is computing coastal surface currents from satellite imagery through the Maximum Cross-Correlation (MCC) technique. According to <span class="bibtex-citation" id="id9">[<a class="reference internal" href="bibliography.html#id10" title="Jianfei Liu, William J Emery, Xiongbin Wu, Miao Li, Chuan Li, and Lan Zhang. Computing coastal ocean surface currents from modis and viirs satellite imagery. Remote Sensing, 9(10):1083, 2017.">Liu <em>et al.</em>, 2017</a>]</span>, this approach tracks distinct features in sequential satellite images, such as temperature gradients and color differences, to measure the speed and direction of surface currents. By merging data from thermal infrared (IR) and ocean color (OC) sensors like MODIS and VIIRS, researchers can achieve broader spatial coverage and improved accuracy in current detection.</p>
+<p>Similarly, geologic studies benefit from marine imagery by allowing researchers to map seabed sediments and characterize seafloor habitats. As shown by <span class="bibtex-citation" id="id10">[<a class="reference internal" href="bibliography.html#id11" title="Markus Diesing, Sophie L Green, David Stephens, R Murray Lark, Heather A Stewart, and Dayton Dove. Mapping seabed sediments: comparison of manual, geostatistical, object-based image analysis and machine learning approaches. Continental Shelf Research, 84:107–119, 2014.">Diesing <em>et al.</em>, 2014</a>]</span>, various techniques such as geostatistical modeling and machine learning, can be applied to classify seabed types from both multibeam echosounder data and imagery. These methods can enhance our understanding of sediment distribution and geological processes, informing marine spatial planning, habitat protection, and resource management.</p>
+</section>
+<section id="pollution-and-marine-litter-studies">
+<h3><span class="section-number">1.3.5. </span>Pollution and Marine Litter Studies<a class="headerlink" href="#pollution-and-marine-litter-studies" title="Link to this heading">#</a></h3>
+<p>Marine plastic pollution is a growing concern due to its widespread ecological and socio-economic impacts. Recent advancements in remote sensing and machine learning have revolutionized the ability to detect and monitor marine litter. Hyperspectral imaging, combined with deep learning algorithms, has proven effective for high-resolution identification of floating plastic debris.</p>
+<p>One promising approach is hyperspectral sensing from aerial platforms, as demonstrated by <span class="bibtex-citation" id="id11">[<a class="reference internal" href="bibliography.html#id12" title="Marco Balsi, Monica Moroni, Valter Chiarabini, and Giovanni Tanda. High-resolution aerial detection of marine plastic litter by hyperspectral sensing. Remote Sensing, 13(8):1557, 2021.">Balsi <em>et al.</em>, 2021</a>]</span>. This study utilized drones equipped with hyperspectral cameras to capture detailed images of marine environments. Hyperspectral sensors, which can capture hundreds of spectral bands across visible and near-infrared wavelengths, are capable of distinguishing plastic materials from other floating objects based on their unique spectral signatures. By applying machine learning models to these spectral data, Balsi et al. achieved high accuracy in detecting marine plastic litter, even in challenging conditions where debris is partially submerged or mixed with organic material.</p>
+<p>Similarly, <span class="bibtex-citation" id="id12">[<a class="reference internal" href="bibliography.html#id13" title="M Bhanumathi, R Gugan, and others. Marine plastic detection using deep learning. Advances in Parallel Computing Algorithms, Tools and Paradigms, pages 406–413, 2022.">Bhanumathi <em>et al.</em>, 2022</a>]</span> explored deep learning techniques for marine plastic detection. The study employed convolutional neural networks (CNNs) to classify marine debris in images collected from aerial and satellite platforms. Their approach demonstrated that deep learning models could be trained to recognize various types of plastic waste, including bottles, bags, and fishing nets, with a high degree of accuracy. The integration of CNNs with remote sensing data provides a scalable solution for monitoring marine pollution across large geographic areas.</p>
+<p>Both studies highlight the importance of developing automated detection systems to address the growing problem of marine litter. High-resolution imagery and advanced analytics enable researchers to track the distribution and movement of plastic debris over time, providing critical data for policy-making and cleanup efforts. The combination of hyperspectral imaging and machine learning represents a powerful tool for tackling marine plastic pollution, offering the potential for continuous, large-scale monitoring of marine environments.</p>
+<p>Later in this course, we will build on these methods by developing an object detection model specifically trained to identify common types of plastics that could be floating on the ocean. Our dataset will stay normally-spectraled as we do not have multispectral money.</p>
+</section>
+</section>
+<section id="challenges-for-imaging-in-the-marine-environment">
+<h2><span class="section-number">1.4. </span>Challenges for imaging in the marine environment<a class="headerlink" href="#challenges-for-imaging-in-the-marine-environment" title="Link to this heading">#</a></h2>
+<p>Despite its many advantages, marine imaging presents several inherent challenges. These can be broadly categorized into optical challenges and environmental challenges:</p>
+<section id="optical-challenges">
+<h3><span class="section-number">1.4.1. </span>Optical Challenges<a class="headerlink" href="#optical-challenges" title="Link to this heading">#</a></h3>
+<p>Underwater imaging is affected by the unique optical properties of water. Light behaves differently underwater than it does in air, which can result in reduced visibility, color distortion, and scattering of light. These issues make it challenging to capture clear, high-resolution images in marine environments. Factors that contribute to optical challenges include:</p>
+<ul class="simple">
+<li><p><strong>Light Attenuation</strong>: Water absorbs light, particularly in the red and yellow wavelengths, which limits the distance that light can travel underwater. According to <span class="bibtex-citation" id="id13">[<a class="reference internal" href="bibliography.html#id2" title="Donna M Kocak and Frank M Caimi. The current art of underwater imaging–with a glimpse of the past and vision of the future. Marine Technology Society Journal, 39(3):5–26, 2005.">Kocak and Caimi, 2005</a>]</span>, the current art of underwater imaging has evolved significantly over time, with advancements in lighting systems, camera platforms, and image processing that have enhanced marine research capabilities. Addressing these limitations requires advanced imaging technologies such as specialized lighting systems and wavelength-specific filters designed to maximize visibility in underwater environments. Their work highlights innovations like LED-based lighting and multi-spectral cameras, which help mitigate the impacts of light absorption and enhance image clarity at greater depths. This affects the clarity and color accuracy of underwater images.</p></li>
+<li><p><strong>Turbidity</strong>: Suspended particles in the water can scatter light and reduce visibility, making it difficult to capture clear images in areas with high sediment loads or plankton blooms.</p></li>
+<li><p><strong>Backscatter</strong>: Particles in the water can cause backscatter, a phenomenon where light reflects off particles and returns to the camera, resulting in image noise.</p></li>
+</ul>
+</section>
+<section id="environmental-challenges">
+<h3><span class="section-number">1.4.2. </span>Environmental Challenges<a class="headerlink" href="#environmental-challenges" title="Link to this heading">#</a></h3>
+<p>In addition to optical challenges, environmental factors can also affect the quality and usability of marine images. These include:</p>
+<ul class="simple">
+<li><p><strong>Pressure and Depth</strong>: Cameras and other imaging equipment must be designed to withstand the extreme pressures found at great depths. Failure to do so can result in equipment damage and data loss.</p></li>
+<li><p><strong>Temperature Variability</strong>: Marine environments can have wide temperature ranges, from near-freezing temperatures in the deep sea to warm tropical waters. Imaging equipment must be able to operate reliably across these temperature extremes.</p></li>
+<li><p><strong>Biofouling</strong>: Over time, marine organisms such as algae, bryozoans, barnacles, and biofilms can accumulate on cameras and other imaging equipment, reducing image quality. Regular maintenance and specialized materials are required to prevent and mitigate biofouling.</p></li>
+<li><p><strong>Dynamic Conditions</strong>: Ocean currents, waves, and tides can affect the stability of imaging platforms, making it challenging to capture steady, high-quality images.</p></li>
+</ul>
+</section>
+</section>
+<section id="solutions-to-imaging-challenges">
+<h2><span class="section-number">1.5. </span>Solutions to Imaging Challenges<a class="headerlink" href="#solutions-to-imaging-challenges" title="Link to this heading">#</a></h2>
+<p>Researchers have developed various strategies to address these challenges, including:</p>
+<ul class="simple">
+<li><p><strong>Lighting Systems</strong>: Using specialized underwater lighting systems to enhance visibility and reduce the effects of light attenuation.</p></li>
+<li><p><strong>Image Processing Techniques</strong>: Applying image correction algorithms to address color distortion and backscatter in underwater images.</p></li>
+<li><p><strong>Robust Equipment Design</strong>: Developing cameras and imaging platforms that can withstand harsh marine conditions, including pressure-resistant housings and biofouling-resistant coatings.</p></li>
+</ul>
+<p>As shown by <span class="bibtex-citation" id="id14">[<a class="reference internal" href="bibliography.html#id15" title="Andreas Marouchos, Matthew Sherlock, and Jeff Cordell. Challenges in underwater image capture. IEEE, pages 1–5, 2018.">Marouchos <em>et al.</em>, 2018</a>]</span>, developing imaging systems for extreme marine environments requires addressing engineering challenges such as pressure tolerance, lighting, and data processing. Modern systems must be capable of capturing high-quality images under low-light and high-pressure conditions while ensuring accurate color reproduction and minimizing backscatter. Stereo imaging systems are particularly valuable for size estimation of marine organisms and require careful calibration to maintain accuracy. The development of automated processing pipelines for these large datasets is essential for making marine imagery more accessible to researchers.</p>
+<p>Further advancements in underwater image color correction have been reviewed extensively by Vlachos and Skarlatos <span class="bibtex-citation" id="id15">[<a class="reference internal" href="bibliography.html#id7" title="Marinos Vlachos and Dimitrios Skarlatos. An extensive literature review on underwater image colour correction. Sensors, 21(17):5690, 2021.">Vlachos and Skarlatos, 2021</a>]</span>. Their work highlights the importance of addressing color distortion caused by light absorption and scattering in water. They discuss various correction methods, including machine learning approaches, to improve the accuracy and clarity of underwater images. These advancements are critical for quantitative analyses and for creating realistic visual representations of underwater environments. I highly recommend checking out either of these papers to learn more about the technical side of camera calibration and the best ways to correct for challenging environments.</p>
+</section>
+<hr class="docutils" />
+<section id="fair-data-principles-in-marine-imaging">
+<h2><span class="section-number">1.6. </span>FAIR Data Principles in Marine Imaging<a class="headerlink" href="#fair-data-principles-in-marine-imaging" title="Link to this heading">#</a></h2>
+<p>The push to make marine image data FAIR (Findable, Accessible, Interoperable, Reusable) is crucial in addressing the challenges posed by increasing data volumes and technical heterogeneity in marine imaging. According to <span class="bibtex-citation" id="id16">[<a class="reference internal" href="bibliography.html#id14" title="Timm Schoening, Jennifer M Durden, Claas Faber, Janine Felden, Karl Heger, Henk-Jan T Hoving, Rainer Kiko, Kevin Köser, Christopher Krämmer, Tom Kwasnitschka, and others. Making marine image data fair. Scientific data, 9(1):414, 2022.">Schoening <em>et al.</em>, 2022</a>]</span>, marine research institutions are increasingly adopting the FAIR principles to ensure sustainable and efficient data management.</p>
+<p>Marine images are unique in that they often require large datasets due to the need for high-resolution images to capture detailed observations of underwater environments. The FAIR principles aim to reduce the management overhead of these large datasets by promoting standardized formats, persistent identifiers, and interoperable data-sharing systems.</p>
+<p>One of the primary innovations proposed is the concept of Image FAIR Digital Objects (iFDOs). These digital objects standardize the metadata and documentation associated with marine images, ensuring that they can be easily found, accessed, and reused by researchers worldwide. iFDOs also address the issue of missing semantic structure in image data by providing a structured format for annotations and metadata, which can be utilized by machine learning algorithms for automated image analysis.</p>
+<p>The development of FAIR-compliant infrastructure environments, as outlined by <span class="bibtex-citation" id="id17">[<a class="reference internal" href="bibliography.html#id14" title="Timm Schoening, Jennifer M Durden, Claas Faber, Janine Felden, Karl Heger, Henk-Jan T Hoving, Rainer Kiko, Kevin Köser, Christopher Krämmer, Tom Kwasnitschka, and others. Making marine image data fair. Scientific data, 9(1):414, 2022.">Schoening <em>et al.</em>, 2022</a>]</span>, is another key component in advancing marine imaging. This infrastructure includes data portals and media asset management systems that enable researchers to share and access marine image data efficiently. By integrating iFDOs with existing research tools such as QGIS and BIIGLE, the FAIR infrastructure environment enhances the interoperability and reusability of marine image data.</p>
+<p>In summary, the ongoing efforts to make marine image data FAIR represent a significant step forward in addressing the challenges associated with managing and utilizing large-scale marine imagery datasets. These efforts not only facilitate more efficient data sharing and analysis but also contribute to the broader goal of advancing oceanographic research and promoting sustainable use of marine resources.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="imageData.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Intro_Imagery.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Imagery Fundamentals</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">1.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">1.1.1. Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1.2. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-studies-that-use-marine-images">1.3. Types of studies that use marine images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ecological-surveys">1.3.1. Ecological Surveys</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#habitat-mapping">1.3.2. Habitat Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#animal-behavior-studies">1.3.3. Animal Behavior Studies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geologic-and-physical-oceanography">1.3.4. Geologic and Physical Oceanography</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pollution-and-marine-litter-studies">1.3.5. Pollution and Marine Litter Studies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges-for-imaging-in-the-marine-environment">1.4. Challenges for imaging in the marine environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-challenges">1.4.1. Optical Challenges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environmental-challenges">1.4.2. Environmental Challenges</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-to-imaging-challenges">1.5. Solutions to Imaging Challenges</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fair-data-principles-in-marine-imaging">1.6. FAIR Data Principles in Marine Imaging</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ada Carter & Katie Bigham
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
