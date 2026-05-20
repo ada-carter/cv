@@ -38,7 +38,7 @@ parts:
       - file: book/Introduction_YOLO.ipynb
       - file: book/TrainandDeployObj_YOLO.ipynb
       - file: book/Classification_YOLO.ipynb
-      - file: book/FathomnetLocalizing_YOLO.ipynb
+      - file: book/OceanCVLocalizing_YOLO.ipynb
       - file: book/Keypoint_YOLO.ipynb
       - file: book/InstanceSegmentation_YOLO.ipynb
       - file: book/ClusterSegmentation_Kmeans.ipynb
@@ -55,6 +55,6 @@ parts:
   - caption: "Appendices"
     numbered: false
     chapters:
-      - file: book/bibliography
+      - file: book/bibliography.md
       - file: book/PreMIWSurvey.md
       - file: book/Introduction_CNN.ipynb
