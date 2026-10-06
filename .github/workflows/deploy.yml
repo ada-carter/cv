@@ -22,10 +22,18 @@ jobs:
 
       - name: Build the book
         run: |
-          jupyter-book build .
+          jupyter-book build
+
+      - name: Prepare deployment assets
+        run: |
+          echo "oceancv.org" > ./_build/html/CNAME
+          touch ./_build/html/.nojekyll
+          if [ -f instman.pdf ]; then cp instman.pdf ./_build/html/; fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_build/html
+          cname: oceancv.org
+
