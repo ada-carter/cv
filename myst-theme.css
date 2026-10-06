@@ -1,0 +1,71 @@
+/* User Provided Stylesheet */
+
+/* custom.css */
+:root {
+  --font-family-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  --font-family-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  --font-family-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, li, .prose {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* Ensure code blocks use sans-serif font */
+code, pre, pre *, code *, [class*="code-block"] *, .myst-code, .hljs {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* Hide the top-left App Bar logo if it's there */
+header img[src*="logo.png"], a.myst-logo {
+    display: none !important;
+}
+
+/* Inject the logo into the top of the left sidebar (above the TOC) */
+nav.myst-sidebar::before, [class*="Sidebar"]::before {
+    content: url('/logo.png');
+    display: block;
+    width: 150px;
+    margin: 1rem auto 2rem auto;
+}
+
+/* Explicit UI navigation, sidebar, tables, buttons, and form inputs sans-serif styling */
+nav,
+nav *,
+aside,
+aside *,
+header,
+header *,
+footer,
+footer *,
+table,
+table *,
+th,
+td,
+button,
+button *,
+input,
+select,
+textarea,
+label,
+form,
+nav.myst-sidebar,
+nav.myst-sidebar *,
+[class*="Sidebar"],
+[class*="Sidebar"] *,
+[class*="sidebar"],
+[class*="sidebar"] *,
+[class*="navigation"],
+[class*="navigation"] *,
+[class*="nav-"],
+[class*="nav-"] *,
+[class*="navbar"],
+[class*="navbar"] *,
+[class*="toc-"],
+[class*="toc-"] *,
+.myst-sidebar,
+.myst-sidebar *,
+.myst-toc,
+.myst-toc * {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
