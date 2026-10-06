@@ -1,16 +1,4 @@
-# Transfer Learning for Marine Computer Vision
-
-## Overview
-
-In this section, we will explore transfer learning and its application in marine computer vision. Transfer learning is a powerful technique that leverages knowledge gained from one task to improve performance on another, which is especially valuable in marine science where labeled data can be limited.
-
-### Learning Objectives
-
-By the end of this section, you will:
-- Understand the concept of transfer learning and why it's valuable for marine science applications
-- Identify when and how to apply transfer learning to marine imagery problems
-- Recognize techniques for adapting pre-trained models to underwater imagery challenges
-- Learn strategies to overcome domain-specific issues in marine computer vision
+# 1.5 Transfer Learning Marine
 
 ---
 

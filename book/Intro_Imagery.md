@@ -1,14 +1,4 @@
-# Imagery Fundamentals 
-
-## Overview
-
-In this lesson, we will explore some fundamentals of imagery. Understanding these basics will help with understanding **Marine Imagery** and **Computer Vision (CV)** techniques.
-
-### Learning Objectives
-
-By the end of this section, you will:
-- Understand what an image is
-- Identify fundamental image types used in marine imaging
+# 1.2 Intro Imagery
 
 ---
 

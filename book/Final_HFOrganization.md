@@ -1,4 +1,9 @@
-# Joining the OceanCV Hugging Face Organization and Uploading Models
+---
+title: Final HFOrganization
+---
+
+*Placeholder content - original file not found in upstream repository.*
+# 5.2 Joining the OceanCV Hugging Face Organization and Uploading Models
 
 This section will guide you through the process of joining the OceanCV Hugging Face organization and uploading your trained models, datasets, or demos.
 

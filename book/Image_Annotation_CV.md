@@ -1,14 +1,4 @@
-# Image Annotation for Computer Vision
-
-## Overview
-In this lesson, we will explore image annotation techniques and their importance in training computer vision models. We will also discuss the different types of annotations—**bounding boxes**, **segmentation**, and **keypoint annotation**—and how they are applied in marine imagery to improve model accuracy and reliability.
-
-### Learning Objectives
-
-By the end of this section, you will:
-- Understand the importance of image annotation in computer vision, explaining why annotated training data is critical for models to accurately recognize and differentiate objects in imagery data, particularly in marine environments.
-- Differentiate between types of annotations, identifying the key differences between bounding boxes, instance segmentation, and keypoint annotations, and determining the appropriate use cases for each.
-- Recognize the impact of annotation quality, evaluating how poor-quality annotations (e.g., overfitting, underfitting, or misidentification) can hinder model performance, and outlining best practices for creating effective annotations.
+# 2.1 Image Annotation CV
 
 ---
 
@@ -104,7 +94,7 @@ By leveraging these annotations, we can effectively train models for object dete
 
 Not all annotations are created equal, and poor-quality annotations can significantly impact the performance and reliability of a model. Annotations produced by hasty annotators or automated processes can result in inaccuracies that may mislead the model, leading to faulty predictions or misclassifications. Incomplete, imprecise, or inconsistent labeling can introduce noise into the training data, ultimately reducing the model's accuracy and effectiveness. These bad annotations can disrupt workflows, causing models to learn incorrect patterns, confuse similar objects, or fail to generalize well to new data. Additionally, poor annotations may lead to an increased likelihood of overfitting, where the model memorizes incorrect relationships rather than learning meaningful patterns. This can be particularly damaging when scaling the model to larger datasets or applying it to real-world scenarios.
 
-For instance, if bounding boxes are poorly drawn—either too tightly cropped (underfitting), too loosely drawn (overfitting), or missing the object entirely— the model may struggle to focus on the object or be misled by irrelevant background. Inconsistent use of class labels across images can also confuse the model, reducing its performance. To better understand how different types of poor annotations can affect model training, the figure below demonstrates three common examples of bad bounding box annotations: overfitting, underfitting, and misidentification.
+For instance, if bounding boxes are poorly drawn, such as being too tightly cropped (underfitting), too loosely drawn (overfitting), or missing the object entirely, the model may struggle to focus on the object or be misled by irrelevant background. Inconsistent use of class labels across images can also confuse the model, reducing its performance. To better understand how different types of poor annotations can affect model training, the figure below demonstrates three common examples of bad bounding box annotations: overfitting, underfitting, and misidentification.
 
 :::{figure} images/bad_annotations.png 
 :name: bad_bbox_example 

@@ -1,0 +1,92 @@
+version: 1
+project:
+  title: Computer Vision Across the Marine Sciences
+  github: ada-carter/cv
+  authors:
+    - name: Ada Carter & Katie Bigham
+  copyright: '2025'
+  exclude:
+    - _build
+    - Thumbs.db
+    - .DS_Store
+    - '**.ipynb_checkpoints'
+    - 'venv_*'
+    - venv_keras
+    - venv_oceancv_localizing
+    - venv_resnet
+  bibliography:
+    - book/references.bib
+  toc:
+    - file: book/index.md
+    - title: Preface
+      children:
+        - file: book/Tools.md
+        - file: book/License_Page.md
+        - file: book/Acknowledgements.md
+        - file: book/StudentProjects.md
+        - file: book/imageData.md
+    - title: Chapter 1 - Introduction to Marine Imaging
+      children:
+        - file: book/Introduction_MarineImaging.md
+        - file: book/Intro_Imagery.md
+        - file: book/OceanImageTypes.md
+        - file: book/Introduction_AI.md
+        - file: book/Transfer_Learning_Marine.md
+        - file: book/Model_Interpretability_Marine.md
+    - title: Chapter 2 - Introduction to Computer Vision
+      children:
+        - file: book/Image_Annotation_CV.md
+        - file: book/Image_Annotation_Man.md
+        - file: book/ImShow.ipynb
+        - file: book/Augmentation_Manual.ipynb
+        - file: book/Augmentation_Albumentation.ipynb
+        - file: book/Augmentation_Streamlit_App.md
+        - file: book/Introduction_Metrics.ipynb
+    - title: Chapter 3 - Computer Vision Development
+      children:
+        - file: book/HuggingFace_API_Setup.md
+        - file: book/Classification_Keras.ipynb
+        - file: book/Introduction_YOLO.ipynb
+        - file: book/TrainandDeployObj_YOLO.ipynb
+        - file: book/TrainandDeployObj_Keras.ipynb
+        - file: book/TrainandDeployObj_ResNet.ipynb
+        - file: book/Classification_YOLO.ipynb
+        - file: book/OceanCVLocalizing_YOLO.ipynb
+        - file: book/Keypoint_YOLO.ipynb
+        - file: book/InstanceSegmentation_YOLO.ipynb
+        - file: book/Restarting_YOLO.md
+        - file: book/ClusterSegmentation_Kmeans.ipynb
+        - file: book/SRGAN_Tensorflow.ipynb
+        - file: book/Edge_Deployment_Optimization.md
+        - file: book/Live_Inference_PyQt.md
+        - file: book/Whale_Shark_Interpretability.ipynb
+        - file: book/Sea_Star_GAN.ipynb
+        - file: book/MarineInst_Segmentation.ipynb
+    - title: Chapter 4 - Vision Language Models
+      children:
+        - file: book/VLM_Introduction.md
+        - file: book/LocateAnything_FirstPass.ipynb
+        - file: book/VLM_MLP_Projection.ipynb
+        - file: book/VLM_QFormer.ipynb
+        - file: book/VLM_Native_Multimodal.ipynb
+        - file: book/VLM_Perceiver_Resampler.ipynb
+        - file: book/VLM_HighRes_Grounding.ipynb
+    - title: Chapter 5 - Synthesis Project
+      children:
+        - file: book/Final_DatasetSelection.md
+        - file: book/Final_HFOrganization.md
+        - file: book/Final_ModelCard.md
+        - file: book/Final_StreamlitApps.md
+        - file: book/Final_GradioApps.md
+    - title: Appendices
+      children:
+        - file: book/bibliography.md
+        - file: book/PreMIWSurvey.md
+        - file: book/Introduction_CNN.ipynb
+site:
+  options:
+    logo: logo.png
+    favicon: fav.ico
+    folders: true
+    style: custom.css
+  template: book-theme

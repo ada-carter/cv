@@ -1,6 +1,8 @@
 # Welcome to Computer Vision Across the Marine Sciences
 
-This textbook aims to provide a comprehensive and interactive guide to applying **Computer Vision (CV)** techniques in the fields of **Marine Biology**, **Fisheries** and, **Oceanography**. You'll explore how modern-day CV techniques can help with interpreting oceanic image data, building models, and understanding marine environments through visual data. 
+This textbook aims to provide a comprehensive and interactive guide to applying **Computer Vision (CV)** techniques in the fields of **Marine Biology**, **Fisheries**, and **Oceanography**. You'll explore how modern-day CV techniques can help with interpreting oceanic image data, building models, and understanding marine environments through visual data. 
+
+Ada Carter & Katie Bigham
 
 The book is structured to cover both **theoretical foundations** and **practical implementations** using **Python**, **PyTorch**, **Tensorflow** and marine datasets. You’ll also work on real-world datasets from open-source repositories to solidify your understanding.
 
@@ -29,8 +31,12 @@ You can use the **table of contents** on the left-hand side to navigate through 
 
 Check out the content pages bundled with this book to dive into the details.
 
+The [Getting Started Page](./book/Tools.md) provides information on the common software and environments used in these lessons and setting up necessary accounts.
+
+## Contributing
+
+This book is currently under development, we welcome feedback, suggestions, and contributions. To provide any of these feel free to open an issue on the [GitHub repository](https://github.com/ada-carter/cv).
+
 :::{note}
-For any feedback or suggestions, feel free to open an issue on the [GitHub repository](https://github.com/atticus-carter/cv).
 This text was created using jupyter book! :)
 :::
-

@@ -28,6 +28,7 @@ parts:
       - file: book/Image_Annotation_CV.md
       - file: book/Augmentation_Manual.ipynb
       - file: book/Augmentation_Albumentation.ipynb
+      - file: book/Augmentation_Streamlit_App.md
       - file: book/Introduction_Metrics.ipynb
 
   - caption: "Chapter 3 - Computer Vision Development"
@@ -46,6 +47,9 @@ parts:
       - file: book/InstanceSegmentation_YOLO.ipynb
       - file: book/ClusterSegmentation_Kmeans.ipynb
       - file: book/SRGAN_Tensorflow.ipynb
+      - file: book/Edge_Deployment_Optimization.md
+      - file: book/Live_Inference_PyQt.md
+      - file: book/BenthicSemSeg_SegFormer
 
   - caption: "Chapter 4 - Synthesis Project"
     numbered: true
@@ -53,6 +57,7 @@ parts:
       - file: book/Final_HFOrganization.md
       - file: book/Final_ModelCard.md
       - file: book/Final_StreamlitApps.md
+      - file: book/Final_GradioApps.md
       - file: book/Final_DatasetSelection.md
 
   - caption: "Appendices"

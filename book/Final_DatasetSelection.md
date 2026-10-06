@@ -1,4 +1,9 @@
-# Finding Datasets for Computer Vision Projects
+---
+title: Final DatasetSelection
+---
+
+*Placeholder content - original file not found in upstream repository.*
+# 5.1 Finding Datasets for Computer Vision Projects
 
 Selecting the right dataset is crucial for the success of any computer vision project. This section will guide you through finding suitable datasets, with a focus on LILA BC, Zenodo, and Roboflow Universe.
 

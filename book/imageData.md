@@ -1,3 +1,8 @@
+---
+title: imageData
+---
+
+*Placeholder content - original file not found in upstream repository.*
 :::{figure} images/WormTower.jpg
 :name: Worms
 Credit: UW/NSF-OOI/WHOI; J2-1666, V24.
@@ -12,4 +17,5 @@ Credit: UW/NSF-OOI/WHOI; J2-1609; V24.
 :name: Seapigs
 Credit: UW/NSF-OOI/WHOI; V21.
 :::
+
 

@@ -1,15 +1,4 @@
-# Marine Imaging
-
-## Overview
-This section provides a non-comprehensive review of the field of marine imaging. We will explore the history of marine imagery, the types of research that utilize imagery in marine environments, and some challenges inherent to using imaging techniques underwater.
-
-### Learning Objectives
-
-By the end of this section, you will:
-
-- Understand the historical development of marine imaging techniques and their scientific relevance.
-- Identify various types of marine research that rely on imagery, including ecological surveys, habitat mapping, and behavior studies.
-- Recognize the primary challenges associated with capturing and analyzing marine imagery, including environmental and technical hurdles.
+# 1.1 Introduction to Marine Imaging
 
 ---
 

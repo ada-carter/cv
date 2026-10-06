@@ -1,14 +1,19 @@
-# Writing a Model Card
+---
+title: Final ModelCard
+---
 
-A model card provides essential information about a machine learning model, including its intended use, performance metrics, limitations, and potential biases. It promotes transparency and helps users understand whether the model is suitable for their specific use case. Here’s a guide on how to write an effective model card, using the NOAA AFSC Marine Mammal Lab YOLOv11 Ice Seal Object Detection Model as an example.
+*Placeholder content - original file not found in upstream repository.*
+# 5.3 Writing a Model Card
+
+A model card provides essential information about a machine learning model, including its intended use, performance metrics, limitations, and potential biases. It promotes transparency and helps users understand whether the model is suitable for their specific use case. Here’s a guide on how to write an effective model card, using the NOAA AFSC Marine Mammal Lab YOLO26 Ice Seal Object Detection Model as an example.
 
 ## Model Card Structure
 
 ### 1. Model Overview
 
-*   **Model Name:** NOAA AFSC Marine Mammal Lab YOLOv11 Ice Seal Object Detection Model
+*   **Model Name:** NOAA AFSC Marine Mammal Lab YOLO26 Ice Seal Object Detection Model
 *   **Description:**
-    *   Accurate identification of ice-associated seals in aerial imagery is essential for monitoring population dynamics and assessing ecological trends in Arctic and sub-Arctic environments. To facilitate the fast and accurate detection of these seals, I have developed a deep learning-based object detection model utilizing YOLOV11n, a lightweight neural network architecture optimized for high-performance image analysis. The model, comprising 319 layers and 2,591,400 parameters, was trained on a diverse dataset containing 7,671 high-resolution images, which were tiled into 30,684 smaller images to enhance feature recognition.
+    *   Accurate identification of ice-associated seals in aerial imagery is essential for monitoring population dynamics and assessing ecological trends in Arctic and sub-Arctic environments. To facilitate the fast and accurate detection of these seals, I have developed a deep learning-based object detection model utilizing YOLO26n, a lightweight neural network architecture optimized for high-performance image analysis. The model, comprising 319 layers and 2,591,400 parameters, was trained on a diverse dataset containing 7,671 high-resolution images, which were tiled into 30,684 smaller images to enhance feature recognition.
 
 ### 2. Intended Use
 

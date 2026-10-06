@@ -1,3 +1,8 @@
+---
+title: Tools
+---
+
+*Placeholder content - original file not found in upstream repository.*
 # Getting Started
 
 This guide will help you set up your environment and understand the tools we'll be using throughout the course.

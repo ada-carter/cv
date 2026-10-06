@@ -34,7 +34,7 @@ To build and explore the book locally:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/atticus-carter/cv.git
+   git clone https://github.com/ada-carter/cv.git
    cd cv
    ```
 

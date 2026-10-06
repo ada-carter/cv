@@ -1,6 +1,11 @@
-# Creating Streamlit Applications for YOLOv11 Models
+---
+title: Final StreamlitApps
+---
 
-Streamlit is an open-source Python library that makes it easy to create interactive web applications. Below is an example of how to load YOLOv11 weights, run inference, and display results.
+*Placeholder content - original file not found in upstream repository.*
+# 5.4 Creating Streamlit Applications for YOLO26 Models
+
+Streamlit is an open-source Python library that makes it easy to create interactive web applications. Below is an example of how to load YOLO26 weights, run inference, and display results.
 
 ## Installation
 ```bash
@@ -30,8 +35,8 @@ A basic Streamlit project structure might look like:
 my_yolo_app/
 ├── app.py              # Main Streamlit application
 ├── requirements.txt    # Dependencies
-├── models/             # Store your YOLOv11 model weights
-│   └── yolov11n.pt
+├── models/             # Store your YOLO26 model weights
+│   └── yolo26n.pt
 └── examples/           # Example images for testing
     └── example1.jpg
 ```
@@ -53,7 +58,7 @@ from PIL import Image
 from ultralytics import YOLO
 
 def main():
-    st.title("YOLOv11 Object Detection App")
+    st.title("YOLO26 Object Detection App")
 
     # ...existing code for UI elements...
     uploaded_file = st.file_uploader("Upload an image:", type=["jpg", "jpeg", "png"])
@@ -61,8 +66,8 @@ def main():
         image = Image.open(uploaded_file)
         st.image(image, caption="Uploaded Image", use_column_width=True)
         if st.button("Run Detection"):
-            # Load a YOLOv11 model (shows how to upload custom weights)
-            model = YOLO("yolov11n.pt")  # Replace with your own weights if needed
+            # Load a YOLO26 model (shows how to upload custom weights)
+            model = YOLO("yolo26n.pt")  # Replace with your own weights if needed
 
             # Run inference
             results = model([image], stream=True)
@@ -100,7 +105,7 @@ def sidebar_controls():
     # Model selection
     model_type = st.sidebar.selectbox(
         "Select Model Type", 
-        ["YOLOv11n", "YOLOv11s", "YOLOv11m", "YOLOv11l"]
+        ["YOLO26n", "YOLO26s", "YOLO26m", "YOLO26l"]
     )
     
     # Confidence threshold slider
